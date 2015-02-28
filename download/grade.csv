@@ -1,0 +1,9 @@
+id,grade,carbon,silicon,manganese,copper,type
+1,400/15,3.65,1.7,0.3,0.18,sg_iron
+2,450/12,3.7,1.7,0.4,0.25,sg_iron
+3,500/7,3.7,1.7,0.5,0.4,sg_iron
+4,600/3,3.7,1.7,0.6,0.5,sg_iron
+5,700/3,3.7,1.6,0.65,0.55,sg_iron
+6,crca,0.002,0.002,0.3,0,crca
+7,pig_iron,3.8,1.8,0.3,0,pigiron
+8,foundry,3.55,2.5,0.35,0.4,foundry
