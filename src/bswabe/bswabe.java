@@ -538,8 +538,7 @@ private static class IntegerComparator implements Comparator<Integer>
                 int k, l;
                 k = policy.children[a.intValue()].min_leaves;
                 l = policy.children[b.intValue()].min_leaves;
-                System.out.println("k = " + k);
-                System.out.println("l = " + l);
+                
                 return	k<l?-1:k==l?0:1;
         }
     }

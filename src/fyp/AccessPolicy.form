@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="branch_check" min="-2" max="-2" attributes="0"/>
+                                  <Component id="department_check" min="-2" max="-2" attributes="0"/>
+                                  <Component id="college_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="city_check" min="-2" max="-2" attributes="0"/>
+                                  <Component id="country_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="phone_check" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="phone" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="roll_check" min="-2" max="-2" attributes="0"/>
+                                          <Component id="firstname_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lastname_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="email_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="email" max="32767" attributes="0"/>
+                                          <Component id="firstname" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="roll" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="lastname" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="sex_check" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="male" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="female" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="dob_check" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="college" alignment="0" max="32767" attributes="0"/>
+                              <Component id="branch" alignment="0" pref="199" max="32767" attributes="0"/>
+                              <Component id="department" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="date" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="month" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="year" min="-2" pref="59" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="city" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="country" min="-2" pref="197" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      <Component id="res" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="policy" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="type_check" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="type" min="-2" pref="86" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="student_check" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="student_year" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="experience_check" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="user_count" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="count_text" min="-2" pref="34" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="staff_year" min="-2" pref="83" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="roll_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="roll" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="country_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="country" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="type_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="type" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="firstname_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="firstname" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="city_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="city" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lastname_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lastname" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="college_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="college" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="email_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="email" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="branch_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="branch" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="phone_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="phone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="department_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="department" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="sex_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="male" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="female" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="dob_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="date" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="month" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="year" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="student_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="student_year" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="experience_check" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="staff_year" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="count_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="user_count" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="policy" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="res" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Access Policy"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="roll_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Roll No"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="roll_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="firstname_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="First name"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="firstname_checkItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstname_checkActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="lastname_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Last name"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="lastname_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="email_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Email Id"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="email_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="phone_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Phone No"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="phone_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="sex_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sex"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="sex_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="roll">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="firstname">
+    </Component>
+    <Component class="javax.swing.JTextField" name="lastname">
+    </Component>
+    <Component class="javax.swing.JTextField" name="email">
+    </Component>
+    <Component class="javax.swing.JTextField" name="phone">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="male">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Male"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="female">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Female"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="country_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Country"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="country_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="city_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="city"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="city_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="college_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="College"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="college_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="branch_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Branch"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="branch_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="department_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Department"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="department_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="dob_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Date of Birth"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dob_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="country">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="100"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="a"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="city">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="100"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="c"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="college">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="4"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="CEG"/>
+            <StringItem index="1" value="MIT"/>
+            <StringItem index="2" value="ACT"/>
+            <StringItem index="3" value="SAP"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="branch">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="100"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="22">
+            <StringItem index="0" value="B.E"/>
+            <StringItem index="1" value="B.A"/>
+            <StringItem index="2" value="B.Arch"/>
+            <StringItem index="3" value="B.Com"/>
+            <StringItem index="4" value="B.Sc"/>
+            <StringItem index="5" value="B.Tech"/>
+            <StringItem index="6" value="BBA"/>
+            <StringItem index="7" value="BCA"/>
+            <StringItem index="8" value="DEEE"/>
+            <StringItem index="9" value="Diploma"/>
+            <StringItem index="10" value="Dual Degree"/>
+            <StringItem index="11" value="Intermediate"/>
+            <StringItem index="12" value="M.A"/>
+            <StringItem index="13" value="M.E"/>
+            <StringItem index="14" value="M.Sc"/>
+            <StringItem index="15" value="M.Sc(Integrated)"/>
+            <StringItem index="16" value="M.Tech"/>
+            <StringItem index="17" value="MBA"/>
+            <StringItem index="18" value="MCA"/>
+            <StringItem index="19" value="MS"/>
+            <StringItem index="20" value="Ph.D"/>
+            <StringItem index="21" value="Other"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="department">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="500"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="74">
+            <StringItem index="0" value="Aeronautical Engineering"/>
+            <StringItem index="1" value="Aerospace Engineering"/>
+            <StringItem index="2" value="Agricultural &amp; Irrigation Engineering"/>
+            <StringItem index="3" value="Aircraft Maintenance Engineering"/>
+            <StringItem index="4" value="Animation"/>
+            <StringItem index="5" value="Apparel technology"/>
+            <StringItem index="6" value="Applied electronics"/>
+            <StringItem index="7" value="Applied Mathematics"/>
+            <StringItem index="8" value="Architecture"/>
+            <StringItem index="9" value="Automobile Engineering"/>
+            <StringItem index="10" value="Avionics"/>
+            <StringItem index="11" value="Bio Informatics"/>
+            <StringItem index="12" value="Bio Medical Engineering"/>
+            <StringItem index="13" value="Biotechnology"/>
+            <StringItem index="14" value="Ceramic Technology"/>
+            <StringItem index="15" value="Charted Accountancy"/>
+            <StringItem index="16" value="Chemical Engineering"/>
+            <StringItem index="17" value="Chemistry"/>
+            <StringItem index="18" value="Civil Engineering"/>
+            <StringItem index="19" value="Communication Systems"/>
+            <StringItem index="20" value="Computer Science &amp; Engineering"/>
+            <StringItem index="21" value="Cryogenic Engineering"/>
+            <StringItem index="22" value="Elecrical Engineering"/>
+            <StringItem index="23" value="Electrical &amp; Electronics Engineering"/>
+            <StringItem index="24" value="Electronic media"/>
+            <StringItem index="25" value="Electronics &amp; Communication Engineering"/>
+            <StringItem index="26" value="Electronics &amp; Instrumentation"/>
+            <StringItem index="27" value="Embedded Systems"/>
+            <StringItem index="28" value="Energy Engineering"/>
+            <StringItem index="29" value="Engineering Design"/>
+            <StringItem index="30" value="Engineering Physics"/>
+            <StringItem index="31" value="English Literature"/>
+            <StringItem index="32" value="Finance"/>
+            <StringItem index="33" value="Fluid Mechanics"/>
+            <StringItem index="34" value="Food Technology"/>
+            <StringItem index="35" value="Geo Informatics"/>
+            <StringItem index="36" value="Harbour Engineering"/>
+            <StringItem index="37" value="High Voltage Engineering"/>
+            <StringItem index="38" value="Hospitality Administration"/>
+            <StringItem index="39" value="HR"/>
+            <StringItem index="40" value="Humanities &amp; Social Sciences"/>
+            <StringItem index="41" value="Industrial Engineering"/>
+            <StringItem index="42" value="Information &amp; Communications Technology"/>
+            <StringItem index="43" value="Information Technology"/>
+            <StringItem index="44" value="Internal Combustion Engineering"/>
+            <StringItem index="45" value="Logistics"/>
+            <StringItem index="46" value="M.Sc. CS-IT"/>
+            <StringItem index="47" value="M.Sc. E-Media"/>
+            <StringItem index="48" value="Manufacturing Engineering"/>
+            <StringItem index="49" value="Marine Engineering"/>
+            <StringItem index="50" value="Marketing"/>
+            <StringItem index="51" value="Material Science"/>
+            <StringItem index="52" value="Mathematics"/>
+            <StringItem index="53" value="Mechanical Engineering"/>
+            <StringItem index="54" value="Mechatronics"/>
+            <StringItem index="55" value="Media Sciences"/>
+            <StringItem index="56" value="Metallurgy"/>
+            <StringItem index="57" value="Mining Engineering"/>
+            <StringItem index="58" value="Nano Science and Technology"/>
+            <StringItem index="59" value="Photonics"/>
+            <StringItem index="60" value="Physics"/>
+            <StringItem index="61" value="Printing Technology"/>
+            <StringItem index="62" value="Production Engineering"/>
+            <StringItem index="63" value="Remote Sensing"/>
+            <StringItem index="64" value="Software Engineering"/>
+            <StringItem index="65" value="Systems Engineering &amp; Operations Research"/>
+            <StringItem index="66" value="Technology Managment"/>
+            <StringItem index="67" value="Telecommunication Engineering"/>
+            <StringItem index="68" value="Textile Technology"/>
+            <StringItem index="69" value="Theoretical Computer Science"/>
+            <StringItem index="70" value="Thermal"/>
+            <StringItem index="71" value="Transportation Engineering"/>
+            <StringItem index="72" value="VLSI Design"/>
+            <StringItem index="73" value="Other"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="date">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="50"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="month">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="12"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="11">
+            <StringItem index="0" value="January"/>
+            <StringItem index="1" value="February"/>
+            <StringItem index="2" value="March"/>
+            <StringItem index="3" value="April"/>
+            <StringItem index="4" value="May"/>
+            <StringItem index="5" value="June"/>
+            <StringItem index="6" value="Juky"/>
+            <StringItem index="7" value="August"/>
+            <StringItem index="8" value="October"/>
+            <StringItem index="9" value="November"/>
+            <StringItem index="10" value="December"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="year">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="500"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="type_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Type"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="type_checkItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="type">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="10"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="student"/>
+            <StringItem index="1" value="staff"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="typeItemStateChanged"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="student_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Student  Year"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="staff_year">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="staff_yearActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="experience_check">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Experience"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="student_year">
+      <Properties>
+        <Property name="maximumRowCount" type="int" value="10"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="5">
+            <StringItem index="0" value="1"/>
+            <StringItem index="1" value="2"/>
+            <StringItem index="2" value="3"/>
+            <StringItem index="3" value="4"/>
+            <StringItem index="4" value="5"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="of"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="count_text">
+    </Component>
+    <Component class="javax.swing.JTextField" name="user_count">
+    </Component>
+    <Component class="javax.swing.JButton" name="policy">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Policy"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="policyActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="res">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel3"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+  </SubComponents>
+</Form>

@@ -4,6 +4,7 @@
  */
 package fyp;
 
+import cpabe.Cpabe;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,12 +23,16 @@ import javax.swing.JOptionPane;
 public class FrontEndUpload extends javax.swing.JFrame {
 
     String file_name="",selected_file_path="",new_file_path="",public_key="",private_key="";
+    String public_dir="",private_dir="",master_dir="",encrypt_dir="",user_attribute="",user_email="";
             
-    public FrontEndUpload() {
+    public FrontEndUpload(String attr,String email) {
         initComponents();
-        file_type.setEditable(false);
-        file_size.setEditable(false);
-      //  key_generate.setVisible(false);
+        user_email=email;
+        user_attribute=attr;
+        file_type.setEnabled(false);
+        file_size.setEnabled(false);
+        policy.setVisible(false);
+        upload.setEnabled(false);
      
     }
     @SuppressWarnings("unchecked")
@@ -43,7 +48,9 @@ public class FrontEndUpload extends javax.swing.JFrame {
         file_size = new javax.swing.JTextField();
         file_path = new javax.swing.JTextField();
         upload = new javax.swing.JButton();
-        key_generate = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        policy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,10 +80,13 @@ public class FrontEndUpload extends javax.swing.JFrame {
             }
         });
 
-        key_generate.setText("Generate Key");
-        key_generate.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setText("UPLOAD");
+
+        policy.setText("Generate Policy");
+        policy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                key_generateActionPerformed(evt);
+                policyActionPerformed(evt);
             }
         });
 
@@ -84,53 +94,67 @@ public class FrontEndUpload extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(upload)
+                .addGap(248, 248, 248))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(choose_file)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)))
-                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(file_path, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(key_generate))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(file_size, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(file_type, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(user_file_name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
-                .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(upload)
-                .addGap(246, 246, 246))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel2)))
+                                .addGap(38, 38, 38))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(choose_file)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(file_size, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(file_type, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(user_file_name, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(file_path, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(policy))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(jLabel4)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(file_path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(choose_file)
-                    .addComponent(key_generate))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(user_file_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(file_type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(file_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(file_path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(policy))
+                    .addComponent(choose_file, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(user_file_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(file_type, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(file_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addComponent(upload)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -138,7 +162,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
 
     private void choose_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choose_fileActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        
+        String dir=System.getProperty("user.dir");
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
           File selectedFile = fileChooser.getSelectedFile();
@@ -150,54 +174,76 @@ public class FrontEndUpload extends javax.swing.JFrame {
           file_type.setText(type[1].toUpperCase());
           file_size.setText((selectedFile.length()/1024)+" KB");
           new_file_path = selected_file_path.replace("\\","\\\\");
+          public_dir=dir+"\\file_path\\public_key";
+          private_dir=dir+"\\file_path\\private_key";
+          master_dir=dir+"\\file_path\\master_key";
+          encrypt_dir=dir+"\\file_path\\encrypt";
+          File pub=new File(public_dir);
+          if(!pub.exists())
+          {
+              pub.mkdirs();
+          }
+          File prv=new File(private_dir);
+          if(!prv.exists())
+          {
+              prv.mkdirs();
+          }
+          File msk=new File(master_dir);
+          if(!msk.exists())
+          {
+              msk.mkdirs();
+          }
+          File enc=new File(encrypt_dir);
+          if(!enc.exists())
+          {
+              enc.mkdirs();
+          }
           System.out.println("file_name = " + file_name);
           System.out.println(new_file_path);
+          policy.setVisible(true);
         }
     }//GEN-LAST:event_choose_fileActionPerformed
 
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
-
+       DBConfig db=new DBConfig();
+       String policy=db.Policy(user_email, file_name);
+        System.out.println("policy = " + policy);
+        
         upload upload_file=new upload();
-        keygeneration file_encrypt=new keygeneration();
+        
         ObjectInputStream inputStream = null;
         String path=file_path.getText();
         String workingDir = System.getProperty("user.dir");
         String new_working_dir=workingDir.replace("\\","//");
         path=path.replace("\\","//");
         System.out.println("path = " + path);
-        try
-      {
-          System.out.println("public_key = " + public_key);
-          System.out.println("new_working_dir = " + new_working_dir+"//keys//"+public_key);
-        //inputStream = new ObjectInputStream(new FileInputStream("keys//"+public_key));
-        //final PublicKey publicKey = (PublicKey) inputStream.readObject();
-        //final byte[] cipherText = file_encrypt.encrypt(path,new_working_dir+"//keys//"+public_key);
-          //System.out.println("cipherText = " + cipherText);
-          File file=new File("keys//temp_file.txt");
-          if(!file.exists())
-          {
-          file.createNewFile();
-          }
-          FileWriter fw = new FileWriter(file.getAbsoluteFile());
-	  BufferedWriter bw = new BufferedWriter(fw);
-       //   bw.write(cipherText.toString());
-          
-          if(upload_file.uploadFile(file_name, file.getAbsolutePath()) == 1)
-        {
-            JOptionPane.showMessageDialog(this, "Successfully Uploaded");
-            
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Upload Failed");
-        }
-          bw.close();
-      } catch(Exception e)
-      {
-          System.out.println("Encryption file calling error = " + e);
-      }
-            
-        if(upload_file.uploadFile(file_name, new_file_path) == 1)
+        String filename=file_name.split("\\.")[0];
+        String private_key=private_dir+"\\private-"+filename+".key";
+        String public_key=public_dir+"\\public-"+filename+".key";
+        String master_key=master_dir+"\\master-"+filename+".key";
+        String encrypt=encrypt_dir+"\\"+file_name;
+        System.out.println("private_key = " + private_key);
+        System.out.println("public_key = " + public_key);
+        System.out.println("master_key = " + master_key);
+        System.out.println("encrypt = " + encrypt);
+        //String policy=user_attribute+" 10of16";
+        String decrypt=workingDir+"\\file_path\\"+file_name;
+        System.out.println("user_attribute = " + user_attribute);
+        System.out.println("selected_file_path = " + selected_file_path);
+        Cpabe file_upload=new Cpabe();
+        System.out.println("Generating Public and Master key..!!");
+        file_upload.setup(public_key, master_key);
+        System.out.println("Public key and Master key Generated..!!");
+        System.out.println("Generating Private Key..!!");
+        file_upload.keyGeneration(public_key, private_key, master_key, user_attribute);
+        System.out.println("Private Key Generated..!!");
+        System.out.println("Encrypting the file!!");
+        file_upload.encryption(public_key, policy, selected_file_path, encrypt);
+        System.out.println("File Encrypted!!!");
+        System.out.println("decrypting...!!!");
+        file_upload.decryption(public_key, private_key, encrypt, decrypt);;
+        System.out.println("File Decrypted..!!");
+        if((upload_file.uploadFile(file_name, encrypt) == 1)&& upload_file.uploadKeyFile("private-"+file_name+".key", private_key)==1)
         {
             JOptionPane.showMessageDialog(this, "Successfully Uploaded");
             
@@ -213,40 +259,16 @@ public class FrontEndUpload extends javax.swing.JFrame {
         file_name=user_file_name.getText();
     }//GEN-LAST:event_user_file_nameKeyReleased
 
-    private void key_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_key_generateActionPerformed
-        String name=user_file_name.getText();
-        String split_name[]=name.split("\\.");
+    private void policyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_policyActionPerformed
+        // TODO add your handling code here:
+        String policy="";
+        AccessPolicy p=new AccessPolicy(user_email,file_name);
+        p.setVisible(true);
         
-        String algo="AES";
-        public_key=algo+"-public-key_"+split_name[0]+".key";
-        private_key=algo+"-private-key_"+split_name[0]+".key";
-        
-        File file_dir=new File("keys");
-        keygeneration key_generate=new keygeneration();
-        if(!file_dir.exists())
-        {
-            file_dir.mkdirs();
-        }
-        File public_file=new File("keys//"+public_key);
-        if(!public_file.exists())
-        {
-            try {
-                public_file.createNewFile();
-            } catch (Exception ex) {
-                System.out.println("Public key File Creation Error = " + ex);
-            }
-        }
-        File private_file=new File("keys//"+private_key);
-        if(!private_file.exists())
-        {
-            try {
-                private_file.createNewFile();
-            } catch (Exception ex) {
-                System.out.println("Private key File Creation Error = " + ex);
-            }
-        }
-        key_generate.generateKey("keys//"+private_key,"keys//"+public_key);
-    }//GEN-LAST:event_key_generateActionPerformed
+        //String policy=p.getPolicy();
+       upload.setEnabled(true);
+        System.out.println("policy = " + p.result);
+    }//GEN-LAST:event_policyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,7 +300,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrontEndUpload().setVisible(true);
+              //  new FrontEndUpload().setVisible(true);
             }
         });
     }
@@ -290,7 +312,9 @@ public class FrontEndUpload extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton key_generate;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton policy;
     private javax.swing.JButton upload;
     private javax.swing.JTextField user_file_name;
     // End of variables declaration//GEN-END:variables

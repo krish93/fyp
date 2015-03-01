@@ -98,6 +98,9 @@ public class FrontEndDownload extends javax.swing.JFrame {
         List files=jList1.getSelectedValuesList();
         upload download=new upload();
         download.downloadFile(files);
+        String name=jList1.getSelectedValue().toString();
+        download.downloadKeyFile("private-"+name+".key");
+        download.decryptFile(files,"private-"+name+".key");
     }//GEN-LAST:event_downloadActionPerformed
 
     /**

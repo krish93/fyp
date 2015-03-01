@@ -165,6 +165,9 @@ public class Login extends javax.swing.JFrame {
         }
         else
         {
+            this.dispose();
+            FrontEndUpload upload=new FrontEndUpload(login_ret,email);
+            upload.setVisible(true);
             System.out.println("login_ret = " + login_ret);
         }
     }//GEN-LAST:event_loginActionPerformed

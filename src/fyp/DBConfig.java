@@ -43,11 +43,11 @@ public class DBConfig {
         {
             conn=DriverManager.getConnection(jdbcUrl);
             setupStatement=conn.createStatement();
-            String createTable = "CREATE TABLE user (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,roll VARCHAR(20),firstname VARCHAR(30) NOT NULL,lastname VARCHAR(30) NOT NULL,email VARCHAR(50),password VARCHAR(50),phno VARCHAR(10),sex VARCHAR(10),country VARCHAR(50),city VARCHAR(50),date VARCHAR(10),month VARCHAR(10),year VARCHAR(10),college VARCHAR(100),branch VARCHAR(100),department VARCHAR(100),type VARCHAR(20),experience VARCHAR(40));";
+            //String createTable = "CREATE TABLE user_file_history (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,email VARCHAR(50),filename VARCHAR(500),policy VARCHAR(1000),success VARCHAR(1000),failure VARCHAR(1000));";
             //String insertRow1 = "INSERT INTO users (id,firstname,lastname,email,phno,sex,country,city,qualification,institution) VALUES (2,'a','a','a','a','a','a','a','a','a');";
             ///setupStatement.addBatch(insertRow1);
-            setupStatement.addBatch(createTable);
-            System.out.println("create "+setupStatement.executeBatch());
+            //setupStatement.addBatch(createTable);
+            //System.out.println("create "+setupStatement.executeBatch());
             setupStatement.close();
             conn.close();
             
@@ -58,6 +58,49 @@ public class DBConfig {
             System.out.println("e = " + e);
         }
       }
+    public String Policy(String email,String filename)
+    {
+        Connection conn=null;
+        Statement get_policy=null;
+        try
+        {
+            String result="";
+            conn=DriverManager.getConnection(jdbcUrl);
+            get_policy=conn.createStatement();
+            String data="select policy from user_file_history where email='"+email+"' and filename='"+filename+"'";
+            ResultSet res=get_policy.executeQuery(data);
+            while(res.next())
+            {
+                result=res.getString("policy");
+            }
+            get_policy.close();
+            conn.close();
+            return result;
+        }
+        catch(Exception e)
+        {
+            System.out.println("Get Policy Error = " + e);
+        }
+        return null;
+    }
+    public void insertPolicy(String email,String filename,String policy)
+    {
+        Connection conn=null;
+        Statement insert_policy=null;
+        try
+        {
+            conn=DriverManager.getConnection(jdbcUrl);
+            insert_policy=conn.createStatement();
+            String data="insert into user_file_history(email,filename,policy,success,failure) values('"+email+"','"+filename+"','"+policy+"','0','0')";
+            insert_policy.execute(data);
+            insert_policy.close();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Policy insert error = " + e);
+        }
+    }
     public int verifyDuplicate(String roll,String email)
     {
         Connection conn=null;
@@ -131,7 +174,7 @@ public class DBConfig {
             ResultSet res=select.executeQuery(select_data);
             if(res.next())
             {
-                String ret="roll:"+res.getString("roll")+" firstname:"+res.getString("firstname")+" lastname:"+res.getString("lastname")+" email:"+res.getString("email")+" phone:"+res.getString("phno")+" sex:"+res.getString("sex")+" country:"+res.getString("country")+" city:"+res.getString("city")+" date:"+res.getString("date")+" month:"+res.getString("month")+" year:"+res.getString("year")+" college:"+res.getString("college")+" branch:"+res.getString("branch")+" department:"+res.getString("department")+" type:"+res.getString("type")+" experience:"+res.getString("experience");
+                String ret="roll:"+res.getString("roll").replaceAll("\\s+","")+" firstname:"+res.getString("firstname").replaceAll("\\s+","")+" lastname:"+res.getString("lastname").replaceAll("\\s+","")+" email:"+res.getString("email").replaceAll("\\s+","")+" phone:"+res.getString("phno").replaceAll("\\s+","")+" sex:"+res.getString("sex").replaceAll("\\s+","")+" country:"+res.getString("country").replaceAll("\\s+","")+" city:"+res.getString("city").replaceAll("\\s+","")+" date:"+res.getString("date").replaceAll("\\s+","")+" month:"+res.getString("month").replaceAll("\\s+","")+" year:"+res.getString("year").replaceAll("\\s+","")+" college:"+res.getString("college").replaceAll("\\s+","")+" branch:"+res.getString("branch").replaceAll("\\s+","")+" department:"+res.getString("department").replaceAll("\\s+","")+" type:"+res.getString("type").replaceAll("\\s+","")+" experience:"+res.getString("experience").replaceAll("\\s+","");
                 return ret;
             }
             else

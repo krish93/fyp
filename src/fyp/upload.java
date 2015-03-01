@@ -23,6 +23,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.StringUtils;
+import cpabe.Cpabe;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,8 +75,7 @@ public class upload {
 		//s3client.deleteBucket(bucketName);*/
                 
 	}
-	
-        public static int uploadFile(String file_name,String file_path)
+	public static int uploadKeyFile(String file_name,String file_path)
         {
             System.out.println("upload file called = ");
             System.out.println("file_path = " + file_path);
@@ -84,7 +84,7 @@ public class upload {
 		TransferManager tx = new TransferManager(credentials);
 		AmazonS3 s3client = new AmazonS3Client(credentials);
 		String bucketName = "cp-abe";
-                String folderName = "testfolder";
+                String folderName = "Policy";
                 String fileName = folderName + SUFFIX + file_name;
 		for (Bucket bucket : s3client.listBuckets()) {
 			System.out.println(" - " + bucket.getName());
@@ -97,7 +97,45 @@ public class upload {
                 while (myUpload.isDone() == false) {
                     double value=myUpload.getProgress().getPercentTransferred();
                     status = (int)value;
-                    System.out.println(myUpload.getProgress().getPercentTransferred());
+                   // System.out.println(myUpload.getProgress().getPercentTransferred());
+                }
+                double value=myUpload.getProgress().getPercentTransferred();
+                status = (int)value;
+                System.out.println("  - State: " + myUpload.getState());
+                myUpload.waitForCompletion();
+                tx.shutdownNow();
+               if(status==100)
+                   return 1;
+            }
+            catch(Exception evt)
+            {
+                System.out.println("upload = " + evt);
+            }
+            return 0;
+        }
+        public static int uploadFile(String file_name,String file_path)
+        {
+            System.out.println("upload file called = ");
+            System.out.println("file_path = " + file_path);
+            try
+            {
+		TransferManager tx = new TransferManager(credentials);
+		AmazonS3 s3client = new AmazonS3Client(credentials);
+		String bucketName = "cp-abe";
+                String folderName = "File";
+                String fileName = folderName + SUFFIX + file_name;
+		for (Bucket bucket : s3client.listBuckets()) {
+			System.out.println(" - " + bucket.getName());
+		}
+		final Upload myUpload=tx.upload(bucketName, fileName,new File(file_path));
+                System.out.println("myUpload = " + myUpload.isDone());
+                System.out.println("Transfer: " + myUpload.getDescription());
+                System.out.println("  - State: " + myUpload.getState());
+                int status=0;
+                while (myUpload.isDone() == false) {
+                    double value=myUpload.getProgress().getPercentTransferred();
+                    status = (int)value;
+                    //System.out.println(myUpload.getProgress().getPercentTransferred());
                 }
                 double value=myUpload.getProgress().getPercentTransferred();
                 status = (int)value;
@@ -132,9 +170,10 @@ public class upload {
             ObjectListing objects = s3client.listObjects("cp-abe");
             do {
                     for (S3ObjectSummary objectSummary : objects.getObjectSummaries()) {
-                        if(objectSummary.getSize()>0)
+                        if(objectSummary.getSize()>0&&objectSummary.getKey().contains("File"))
                         {
-                        files.add(objectSummary.getKey().toString());
+                        files.add(objectSummary.getKey().toString().split("/")[1]);
+                            System.out.println("files = " + objectSummary.getKey());
                         System.out.println(objectSummary.getKey() + "\t" +
                          objectSummary.getSize() + "\t" +
                           StringUtils.fromDate(objectSummary.getLastModified()));
@@ -149,6 +188,108 @@ public class upload {
         }
         return files;
         }
+        public static void decryptFile(List file,String key)
+        {
+            Iterator iter=file.iterator();
+            while(iter.hasNext())
+            {
+                String name=(String)iter.next();
+            String file_dir=System.getProperty("user.dir")+"\\download-encrypt\\"+name;
+            String key_dir=System.getProperty("user.dir")+"\\download-key\\"+key;
+            String dir=System.getProperty("user.dir");
+            String pub=dir+"\\sample1";
+            String msk=dir+"\\sample2";
+            String decrypt_dir=dir+"\\download";
+            try
+            {
+                Runtime rt = Runtime.getRuntime();
+            Process proc = rt.exec("attrib +H "+file_dir); 
+            int exitVal = proc.exitValue();
+            proc.destroy();
+            
+            }
+            catch(Exception e)
+            {
+                
+            }
+            try
+            {
+                Runtime rt = Runtime.getRuntime();
+            Process proc = rt.exec("attrib +H "+key_dir); 
+            int exitVal = proc.exitValue();
+            proc.destroy();
+            }
+            catch(Exception e)
+            {
+                
+            }
+            File f=new File(decrypt_dir);
+            if(!f.exists())
+            {
+                f.mkdirs();
+            }
+            String decrypt=decrypt_dir+"\\"+name;
+            Cpabe dec=new Cpabe();
+            dec.setup(pub,msk);
+            dec.decryption(pub, key_dir, file_dir, decrypt);
+            File del_f=new File(file_dir);
+            if(del_f.exists())
+            {
+                del_f.delete();
+            }
+            File del_key=new File(key_dir);
+            if(del_key.exists())
+            {
+                del_key.delete();
+            }
+            File samp=new File(pub);
+            if(samp.exists())
+            {
+                samp.delete();
+            }
+            File samp1=new File(msk);
+            if(samp1.exists())
+            {
+                samp1.delete();
+            }
+            }
+        }
+        public static void downloadKeyFile(String key_file)
+        {
+            try
+            {
+            AmazonS3 s3client = new AmazonS3Client(credentials);
+            String existingBucketName = "cp-abe";
+            String workingDir = System.getProperty("user.dir");
+	    System.out.println("Current working directory : " + workingDir);
+            String keyName = "Policy/"+key_file;
+            String file_path=workingDir+"\\download-key";
+            System.out.println("file_path = " + file_path);
+                System.out.println("keyName = " + keyName);
+            File file=new File(file_path);
+            if(!file.exists())
+            {
+ 
+                file.mkdirs();
+            }
+            String new_working_dir=workingDir.replace("\\","//");
+            String name[]=keyName.split("/");
+            new_working_dir=new_working_dir+"//download-key";
+            System.out.println("new_working_dir = " + new_working_dir);
+            System.out.println("name[1] = " + name[1]);
+            System.out.println("keyName = " + keyName);
+            GetObjectRequest request = new GetObjectRequest(existingBucketName,keyName);
+            S3Object object = s3client.getObject(request);
+            S3ObjectInputStream objectContent = object.getObjectContent();
+            
+            System.out.println(IOUtils.copy(objectContent, new FileOutputStream(new_working_dir+"//"+name[1])));   
+            
+            }
+            catch(Exception e)
+            {
+                System.out.println("download error = " + e);
+            }
+        }
         public static void downloadFile(List files)
         {
             try
@@ -160,10 +301,11 @@ public class upload {
             Iterator iter=files.iterator();
             while(iter.hasNext())
             {
-            String keyName = (String)iter.next();
-            String file_path=workingDir+"\\download";
+            String keyName = "File/"+(String)iter.next();
+            String file_path=workingDir+"\\download-encrypt";
             System.out.println("file_path = " + file_path);
-            File file=new File("download");
+                System.out.println("keyName = " + keyName);
+            File file=new File(file_path);
             if(!file.exists())
             {
  
@@ -171,7 +313,7 @@ public class upload {
             }
             String new_working_dir=workingDir.replace("\\","//");
             String name[]=keyName.split("/");
-            new_working_dir=new_working_dir+"//download";
+            new_working_dir=new_working_dir+"//download-encrypt";
             System.out.println("new_working_dir = " + new_working_dir);
             System.out.println("name[1] = " + name[1]);
             System.out.println("keyName = " + keyName);

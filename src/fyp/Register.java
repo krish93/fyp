@@ -22,8 +22,6 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         initComponents();
         this.setTitle("Sign Up");
-        date.setSelectedIndex(-1);
-        year.setSelectedIndex(-1);
         for(int i=1;i<=31;i++)
         {
             date.addItem(i);
@@ -32,6 +30,8 @@ public class Register extends javax.swing.JFrame {
         {
             year.addItem(i);
         }
+        date.setSelectedIndex(-1);
+        year.setSelectedIndex(-1);
         buttonGroup1.add(male);
         buttonGroup1.add(female);
         staff_year.setVisible(false);

@@ -26,7 +26,7 @@ public class main_file{
 		+ "objectClass:organizationalPerson sn:student2 cn:student2 "
 		+ "uid:student2 userPassword:student2 ou:idp o:computer "
 		+ "mail:student2@sdu.edu.cn title:student";
-        static String sample_attr = "objectClass:inetOrgPerson "
+        static String sample_attr = "objectClass:inet Org Person "
 		+ "objectClass:organizational Person sn:student2 cn:student2 "
 		+ "uid:student2 userPassword:student2 ou:idp o:computer "
 		+ "mail:student2@sdu.edu.cn title:student";
