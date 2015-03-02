@@ -4,6 +4,7 @@
  */
 package fyp;
 
+import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -49,6 +50,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
+        email_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                email_idKeyReleased(evt);
+            }
+        });
+
         login.setText("Login");
         login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +69,16 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Don't Have an Account?");
 
         register.setText("Create Account");
+        register.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerActionPerformed(evt);
+            }
+        });
+        register.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                registerKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Vani", 1, 18)); // NOI18N
         jLabel4.setText("Sign In");
@@ -88,9 +105,8 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(invalid_email, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(email_id, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                        .addComponent(password)))))
+                                    .addComponent(email_id, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                    .addComponent(password))))
                         .addGap(50, 50, 50)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,6 +175,7 @@ public class Login extends javax.swing.JFrame {
         validatePassword(pass);
         DBConfig db=new DBConfig();
         String login_ret=db.login_user(email, pass);
+        db=null;
         if(login_ret=="failed")
         {
             JOptionPane.showMessageDialog(this, "Authentication Failed!!!");
@@ -166,11 +183,38 @@ public class Login extends javax.swing.JFrame {
         else
         {
             this.dispose();
-            FrontEndUpload upload=new FrontEndUpload(login_ret,email);
-            upload.setVisible(true);
+            FrontEnd front_end=new FrontEnd(login_ret,email);
+            front_end.setVisible(true);
+            
             System.out.println("login_ret = " + login_ret);
         }
     }//GEN-LAST:event_loginActionPerformed
+
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Register reg=new Register();
+       reg.setVisible(true);
+    }//GEN-LAST:event_registerActionPerformed
+
+    private void registerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_registerKeyReleased
+
+    private void email_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_email_idKeyReleased
+        // TODO add your handling code here:
+        String email=email_id.getText();
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+        if(!matcher.find())
+        {
+            email_id.setForeground(Color.red);
+        }
+        else
+        {
+            email_id.setForeground(Color.BLUE);
+        }
+    }//GEN-LAST:event_email_idKeyReleased
 
     /**
      * @param args the command line arguments

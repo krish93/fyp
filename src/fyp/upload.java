@@ -1,4 +1,9 @@
 package fyp;
+import bswabe.Cipher;
+import bswabe.Private;
+import bswabe.Public;
+import bswabe.SerializeUtils;
+import bswabe.bswabe;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -23,6 +28,7 @@ import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.util.IOUtils;
 import com.amazonaws.util.StringUtils;
+import cpabe.Common;
 import cpabe.Cpabe;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 public class upload {
 	
@@ -102,9 +109,11 @@ public class upload {
                 double value=myUpload.getProgress().getPercentTransferred();
                 status = (int)value;
                 System.out.println("  - State: " + myUpload.getState());
+                String file_status=myUpload.getState().toString().toLowerCase();
                 myUpload.waitForCompletion();
                 tx.shutdownNow();
-               if(status==100)
+                
+               if( file_status== "complete")
                    return 1;
             }
             catch(Exception evt)
@@ -289,6 +298,7 @@ public class upload {
             {
                 System.out.println("download error = " + e);
             }
+            
         }
         public static void downloadFile(List files)
         {

@@ -1,0 +1,5 @@
+1. Create a database and table for storing the user acces policy
+2. Encrypted file and ke need to be stored in the cloud
+3. decryption is not done
+4. re encryption no idea what to do
+5. Encryption 

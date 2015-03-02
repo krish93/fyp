@@ -4,10 +4,18 @@
  */
 package fyp;
 
+import bswabe.Cipher;
+import bswabe.Private;
+import bswabe.Public;
+import bswabe.SerializeUtils;
+import bswabe.bswabe;
+import cpabe.Common;
+import cpabe.Cpabe;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +26,11 @@ public class FrontEndDownload extends javax.swing.JFrame {
     /**
      * Creates new form FrontEndDownload
      */
-    public FrontEndDownload() {
+    String user_login_ret,user_email;
+    public FrontEndDownload(String login_ret,String email) {
         initComponents();
+        user_login_ret=login_ret;
+        user_email=email;
         upload download_file=new upload();
         List files=download_file.ListFile();
         System.out.println("files = " + files);
@@ -93,14 +104,62 @@ public class FrontEndDownload extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public int policySatisfy(String user_email,String user_login,String Name)
+    {
+        String dir=System.getProperty("user.dir");
+            String pub=dir+"\\sample1";
+            String msk=dir+"\\sample2";
+            String prv=dir+"\\sample3";
+            DBConfig db=new DBConfig();
+            String policy=db.Policy(user_email, Name);
+            byte[] private_byte;
+            byte[] public_byte;
+            byte[] aes_buffer;
+            byte[] cipher_buffer;
+            byte[][] temp;
+            String file_path_enc=dir+"\\download-encrypt\\"+Name;
+            Cipher cipher;
+            Private prv1;
+            Public pub1;
+            Cpabe dec=new Cpabe();
+            dec.setup(pub,msk);
+            dec.keyGeneration(pub, prv, msk, user_login_ret);
+            dec=null;
+            public_byte = Common.suckFile(pub);
+            pub1 = SerializeUtils.unserializeBswabePub(public_byte);
+            temp = Common.readCpabeFile(file_path_enc);
+            aes_buffer = temp[0];
+            cipher_buffer = temp[1];
+            cipher = SerializeUtils.bswabeCphUnserialize(pub1, cipher_buffer);
+            private_byte = Common.suckFile(prv);
+            prv1 = SerializeUtils.unserializeBswabePrv(pub1, private_byte);
+            bswabe check_policy=new bswabe();
+            check_policy.checkSatisfy(cipher.p, prv1);
+            if (cipher.p.satisfiable)
+            {
+             return 1;
+            }
+           return 0;
+    }
     private void downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadActionPerformed
         // TODO add your handling code here:
         List files=jList1.getSelectedValuesList();
         upload download=new upload();
         download.downloadFile(files);
         String name=jList1.getSelectedValue().toString();
-        download.downloadKeyFile("private-"+name+".key");
-        download.decryptFile(files,"private-"+name+".key");
+        int policy=policySatisfy(user_email,user_login_ret,name);
+        if(policy==1)
+        {
+            System.out.println("in");
+            
+            download.downloadKeyFile("private-"+name+".key");
+            download.decryptFile(files,"private-"+name+".key");
+            JOptionPane.showMessageDialog(this, "File Downloaded");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Policy is not satisfied to download");
+        }
     }//GEN-LAST:event_downloadActionPerformed
 
     /**
@@ -131,11 +190,12 @@ public class FrontEndDownload extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        /*
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrontEndDownload().setVisible(true);
             }
-        });
+        });*/
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

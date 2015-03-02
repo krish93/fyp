@@ -45,7 +45,8 @@ public class DBConfig {
             setupStatement=conn.createStatement();
             //String createTable = "CREATE TABLE user_file_history (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,email VARCHAR(50),filename VARCHAR(500),policy VARCHAR(1000),success VARCHAR(1000),failure VARCHAR(1000));";
             //String insertRow1 = "INSERT INTO users (id,firstname,lastname,email,phno,sex,country,city,qualification,institution) VALUES (2,'a','a','a','a','a','a','a','a','a');";
-            ///setupStatement.addBatch(insertRow1);
+            //String insertRow1= "Truncate table user_file_history";
+            //setupStatement.addBatch(insertRow1);
             //setupStatement.addBatch(createTable);
             //System.out.println("create "+setupStatement.executeBatch());
             setupStatement.close();

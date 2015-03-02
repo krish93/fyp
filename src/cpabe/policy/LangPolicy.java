@@ -24,7 +24,6 @@ public class LangPolicy {
         while (st.hasMoreTokens()) 
         {
             token = st.nextToken();
-            System.out.println("token = " + token);
             if (token.contains(":")) {
                 str_arr.add(token);
             } 

@@ -200,6 +200,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
           }
           System.out.println("file_name = " + file_name);
           System.out.println(new_file_path);
+         // fileChooser = null;
           policy.setVisible(true);
         }
     }//GEN-LAST:event_choose_fileActionPerformed
@@ -208,7 +209,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
        DBConfig db=new DBConfig();
        String policy=db.Policy(user_email, file_name);
         System.out.println("policy = " + policy);
-        
+        db=null;
         upload upload_file=new upload();
         
         ObjectInputStream inputStream = null;
@@ -240,12 +241,21 @@ public class FrontEndUpload extends javax.swing.JFrame {
         System.out.println("Encrypting the file!!");
         file_upload.encryption(public_key, policy, selected_file_path, encrypt);
         System.out.println("File Encrypted!!!");
-        System.out.println("decrypting...!!!");
+        /*System.out.println("decrypting...!!!");
         file_upload.decryption(public_key, private_key, encrypt, decrypt);;
-        System.out.println("File Decrypted..!!");
-        if((upload_file.uploadFile(file_name, encrypt) == 1)&& upload_file.uploadKeyFile("private-"+file_name+".key", private_key)==1)
+        System.out.println("File Decrypted..!!");*/
+        if((upload_file.uploadFile(file_name, encrypt) == 1))
         {
             JOptionPane.showMessageDialog(this, "Successfully Uploaded");
+            if(upload_file.uploadKeyFile("private-"+file_name+".key", private_key)==1)
+            {
+                JOptionPane.showMessageDialog(this, "Successfully key Uploaded");
+                this.dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Key Not Uploaded");
+            }
             
         }
         else
@@ -264,10 +274,10 @@ public class FrontEndUpload extends javax.swing.JFrame {
         String policy="";
         AccessPolicy p=new AccessPolicy(user_email,file_name);
         p.setVisible(true);
-        
+        p=null;
         //String policy=p.getPolicy();
        upload.setEnabled(true);
-        System.out.println("policy = " + p.result);
+        //System.out.println("policy = " + p.result);
     }//GEN-LAST:event_policyActionPerformed
 
     /**

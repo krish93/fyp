@@ -18,7 +18,7 @@ public class Policy {
     Element cp;
     Policy[] children;
     Polynomial q;
-    boolean satisfiable;
+    public boolean satisfiable;
     int min_leaves;
     int attri;
     ArrayList<Integer> satl = new ArrayList<Integer>();

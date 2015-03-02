@@ -710,83 +710,85 @@ public class AccessPolicy extends javax.swing.JFrame {
         {
         if(roll.getText() !="" && roll_check.isSelected())
         {
-            result+="roll:"+roll.getText()+" ";
+            result+="roll:"+roll.getText().replaceAll("\\s+","")+" ";
         }
         if(firstname.getText()!="" && firstname_check.isSelected())
         {
-            result+="firstname:"+firstname.getText()+" ";
+            result+="firstname:"+firstname.getText().replaceAll("\\s+","")+" ";
         }
         if(lastname.getText()!="" && lastname_check.isSelected())
         {
-            result+="lastname:"+lastname.getText()+" ";
+            result+="lastname:"+lastname.getText().replaceAll("\\s+","")+" ";
         }
         if(email.getText()!="" && email_check.isSelected())
         {
-            result+="email:"+email.getText()+" ";
+            result+="email:"+email.getText().replaceAll("\\s+","")+" ";
         }
         if(phone.getText()!="" && phone_check.isSelected())
         {
-            result+="phone:"+phone.getText()+" ";
+            result+="phone:"+phone.getText().replaceAll("\\s+","")+" ";
         }
         if(male.isSelected() && sex_check.isSelected())
         {
-            result+="sex:"+male.getText()+" ";
+            result+="sex:"+male.getText().replaceAll("\\s+","")+" ";
         }
         if(female.isSelected() && sex_check.isSelected())
         {
-            result+="sex:"+female.getText()+" ";
+            result+="sex:"+female.getText().replaceAll("\\s+","")+" ";
         }
         if(country.getSelectedItem() !="" && country_check.isSelected())
         {
-            result+="country:"+country.getSelectedItem().toString()+" ";
+            result+="country:"+country.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(city.getSelectedItem() !="" && city_check.isSelected())
         {
-            result+="city:"+city.getSelectedItem().toString()+" ";
+            result+="city:"+city.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(college.getSelectedItem() !="" && college_check.isSelected())
         {
-            result+="college:"+college.getSelectedItem().toString()+" ";
+            result+="college:"+college.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(branch.getSelectedItem() !="" && branch_check.isSelected())
         {
-            result+="branch:"+branch.getSelectedItem().toString()+" ";
+            result+="branch:"+branch.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(department.getSelectedItem() !="" && department_check.isSelected())
         {
-            result+="department:"+department.getSelectedItem().toString()+" ";
+            result+="department:"+department.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(date.getSelectedItem()!="" && dob_check.isSelected())
         {
-            result+="data:"+date.getSelectedItem().toString()+" ";
+            result+="data:"+date.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(month.getSelectedItem()!="" && dob_check.isSelected())
         {
-            result+="month:"+month.getSelectedItem().toString()+" ";
+            result+="month:"+month.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(year.getSelectedItem()!="" && dob_check.isSelected())
         {
-            result+="year:"+year.getSelectedItem().toString()+" ";
+            result+="year:"+year.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(type.getSelectedItem() !="" && type_check.isSelected())
         {
-            result+="type:"+type.getSelectedItem().toString()+" ";
+            result+="type:"+type.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(student_year.getSelectedItem() !="" && student_check.isSelected())
         {
-            result+="experience:"+student_year.getSelectedItem().toString()+" ";
+            result+="experience:"+student_year.getSelectedItem().toString().replaceAll("\\s+","")+" ";
         }
         if(staff_year.getText() !="" && experience_check.isSelected())
         {
-            result+="experience:"+staff_year.getText()+" ";
+            result+="experience:"+staff_year.getText().replaceAll("\\s+","")+" ";
         }
             
         result+=user_count.getText()+"of"+count_text.getText();
         }
         DBConfig db=new DBConfig();
         db.insertPolicy(user_email, filename, result);
+        db=null;
         System.out.println("result = " + result);
         res.setText(result);
+        this.dispose();
     }//GEN-LAST:event_policyActionPerformed
     public String getPolicy()
     {

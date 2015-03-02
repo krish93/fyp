@@ -392,6 +392,7 @@ public class Register extends javax.swing.JFrame {
         }
         DBConfig db=new DBConfig();
         int ret=db.insertNewUser(roll, firstname, lastname, email, pass,phone,user_date,user_month,user_year,user_sex,user_country, user_city, user_college, user_branch, user_department, user_type,experience);
+        db=null;
         if(ret==1)
         {
             JOptionPane.showMessageDialog(this,"Email Id (or) roll no already exist!!!");
