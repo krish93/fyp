@@ -197,7 +197,7 @@ public class upload {
         }
         return files;
         }
-        public static void decryptFile(List file,String key)
+        public static int decryptFile(List file,String key)
         {
             Iterator iter=file.iterator();
             while(iter.hasNext())
@@ -240,7 +240,7 @@ public class upload {
             String decrypt=decrypt_dir+"\\"+name;
             Cpabe dec=new Cpabe();
             dec.setup(pub,msk);
-            dec.decryption(pub, key_dir, file_dir, decrypt);
+            int ret=dec.decryption(pub, key_dir, file_dir, decrypt);
             File del_f=new File(file_dir);
             if(del_f.exists())
             {
@@ -261,7 +261,13 @@ public class upload {
             {
                 samp1.delete();
             }
+            if(ret==1)
+            {
+                return 1;
             }
+            
+            }
+            return 0;
         }
         public static void downloadKeyFile(String key_file)
         {

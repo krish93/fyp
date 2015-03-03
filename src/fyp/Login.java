@@ -45,6 +45,7 @@ public class Login extends javax.swing.JFrame {
         invalid_email = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(105, 105, 105));
 
         jLabel1.setText("Email Id:");
 
@@ -183,10 +184,18 @@ public class Login extends javax.swing.JFrame {
         else
         {
             this.dispose();
+            if(email.equals("admin@admin.com"))
+            {
+                AdminPanel panel=new AdminPanel();
+                panel.setVisible(true);
+            }
+            else
+            {
             FrontEnd front_end=new FrontEnd(login_ret,email);
             front_end.setVisible(true);
             
             System.out.println("login_ret = " + login_ret);
+            }
         }
     }//GEN-LAST:event_loginActionPerformed
 

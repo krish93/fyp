@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.security.PublicKey;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -52,7 +54,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         policy = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         choose_file.setText("Choose File");
         choose_file.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +163,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void choose_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choose_fileActionPerformed
+        
         JFileChooser fileChooser = new JFileChooser();
         String dir=System.getProperty("user.dir");
         int returnValue = fileChooser.showOpenDialog(null);
@@ -205,13 +208,21 @@ public class FrontEndUpload extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_choose_fileActionPerformed
 
+    public String getTime()
+    {
+        Calendar cal = Calendar.getInstance();
+    	cal.getTime();
+    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    	return  sdf.format(cal.getTime());
+    }
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
        DBConfig db=new DBConfig();
        String policy=db.Policy(user_email, file_name);
         System.out.println("policy = " + policy);
         db=null;
         upload upload_file=new upload();
-        
+        String start_time=getTime();
+        System.out.println("start_time = " + start_time);
         ObjectInputStream inputStream = null;
         String path=file_path.getText();
         String workingDir = System.getProperty("user.dir");
@@ -223,14 +234,14 @@ public class FrontEndUpload extends javax.swing.JFrame {
         String public_key=public_dir+"\\public-"+filename+".key";
         String master_key=master_dir+"\\master-"+filename+".key";
         String encrypt=encrypt_dir+"\\"+file_name;
-        System.out.println("private_key = " + private_key);
-        System.out.println("public_key = " + public_key);
-        System.out.println("master_key = " + master_key);
-        System.out.println("encrypt = " + encrypt);
+      /*  System.out.println("private_key = " + private_key);
+        //System.out.println("public_key = " + public_key);
+        //System.out.println("master_key = " + master_key);
+        //System.out.println("encrypt = " + encrypt);
         //String policy=user_attribute+" 10of16";
-        String decrypt=workingDir+"\\file_path\\"+file_name;
+        //String decrypt=workingDir+"\\file_path\\"+file_name;
         System.out.println("user_attribute = " + user_attribute);
-        System.out.println("selected_file_path = " + selected_file_path);
+        System.out.println("selected_file_path = " + selected_file_path);*/
         Cpabe file_upload=new Cpabe();
         System.out.println("Generating Public and Master key..!!");
         file_upload.setup(public_key, master_key);
@@ -246,20 +257,19 @@ public class FrontEndUpload extends javax.swing.JFrame {
         System.out.println("File Decrypted..!!");*/
         if((upload_file.uploadFile(file_name, encrypt) == 1))
         {
+            upload_file.uploadKeyFile("private-"+file_name+".key", private_key);
+            String end_time=getTime();
+            DBConfig acc=new DBConfig();
+            acc.insertAccessPolicy(user_email, file_name, "upload", "success", start_time, end_time);
+            acc=null;
             JOptionPane.showMessageDialog(this, "Successfully Uploaded");
-            if(upload_file.uploadKeyFile("private-"+file_name+".key", private_key)==1)
-            {
-                JOptionPane.showMessageDialog(this, "Successfully key Uploaded");
-                this.dispose();
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this, "Key Not Uploaded");
-            }
-            
         }
         else
         {
+            String end_time=getTime();
+            DBConfig acc=new DBConfig();
+            acc.insertAccessPolicy(user_email, filename, "upload", "failure", start_time, end_time);
+            acc=null;
             JOptionPane.showMessageDialog(this, "Upload Failed");
         }
     }//GEN-LAST:event_uploadActionPerformed

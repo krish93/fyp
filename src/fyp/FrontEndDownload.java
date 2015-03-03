@@ -11,6 +11,8 @@ import bswabe.SerializeUtils;
 import bswabe.bswabe;
 import cpabe.Common;
 import cpabe.Cpabe;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -60,8 +62,10 @@ public class FrontEndDownload extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         download = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jScrollPane2.setViewportView(jList1);
 
@@ -80,23 +84,29 @@ public class FrontEndDownload extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2)
+            .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
+                .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(34, 34, 34))
+            .addComponent(jSeparator2)
             .addGroup(layout.createSequentialGroup()
-                .addGap(142, 142, 142)
+                .addGap(155, 155, 155)
                 .addComponent(download)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addComponent(download)
                 .addContainerGap())
         );
@@ -141,8 +151,16 @@ public class FrontEndDownload extends javax.swing.JFrame {
             }
            return 0;
     }
+    public String getTime()
+    {
+        Calendar cal = Calendar.getInstance();
+    	cal.getTime();
+    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    	return  sdf.format(cal.getTime());
+    }
     private void downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadActionPerformed
         // TODO add your handling code here:
+        String start_time=getTime();
         List files=jList1.getSelectedValuesList();
         upload download=new upload();
         download.downloadFile(files);
@@ -151,13 +169,37 @@ public class FrontEndDownload extends javax.swing.JFrame {
         if(policy==1)
         {
             System.out.println("in");
-            
             download.downloadKeyFile("private-"+name+".key");
-            download.decryptFile(files,"private-"+name+".key");
+            int ret=download.decryptFile(files,"private-"+name+".key");
+            if(ret==1)
+            {
+            
+            String end_time=getTime();
+            DBConfig acc=new DBConfig();
+            acc.insertAccessPolicy(user_email, name, "download", "success", start_time, end_time);
+            acc.modifyHistoryYable(user_email, name, "success");
+            acc=null;
             JOptionPane.showMessageDialog(this, "File Downloaded");
+            }
+            else
+            {
+                
+                String end_time=getTime();
+                DBConfig acc=new DBConfig();
+                acc.insertAccessPolicy(user_email, name, "download", "failure", start_time, end_time);
+                acc.modifyHistoryYable(user_email, name, "failure");
+                acc=null;
+                JOptionPane.showMessageDialog(this, "Error in Downloading the File");
+            }
         }
         else
         {
+            
+            String end_time=getTime();
+            DBConfig acc=new DBConfig();
+            acc.insertAccessPolicy(user_email, name, "download", "failure", start_time, end_time);
+            acc.modifyHistoryYable(user_email, name, "failure");
+            acc=null;
             JOptionPane.showMessageDialog(this, "Policy is not satisfied to download");
         }
     }//GEN-LAST:event_downloadActionPerformed
@@ -203,5 +245,7 @@ public class FrontEndDownload extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

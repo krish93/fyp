@@ -85,7 +85,7 @@ public class Cpabe {
             System.out.println("Encryption error = " + e);
         }
     }
-    public void decryption(String public_file,String private_file,String encrypt_file,String decrypt_file)
+    public int decryption(String public_file,String private_file,String encrypt_file,String decrypt_file)
     {
         try
         {
@@ -111,10 +111,12 @@ public class Cpabe {
             {
                 plt = AESCoder.decrypt(beb.e.toBytes(), aes_buffer);
                 Common.spitFile(decrypt_file, plt);
+                return 1;
             } 
             else 
             {
 		System.exit(0);
+                return 0;
             }
                 
         }
@@ -122,6 +124,7 @@ public class Cpabe {
         {
             System.out.println("cpabe decryption error = " + e);
         }
+        return 0;
     }
     public static void main(String[] args) {
         // TODO code application logic here

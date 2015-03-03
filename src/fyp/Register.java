@@ -404,6 +404,9 @@ public class Register extends javax.swing.JFrame {
         else if(ret==2)
         {
             JOptionPane.showMessageDialog(this,"Successfully Inserted!!");
+            this.dispose();
+            Login log=new Login();
+            log.setVisible(true);
         }
     }//GEN-LAST:event_registerActionPerformed
 

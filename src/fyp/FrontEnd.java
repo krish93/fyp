@@ -5,6 +5,7 @@
 package fyp;
 
 import cpabe.Cpabe;
+import org.jfree.ui.RefineryUtilities;
 
 /**
  *
@@ -40,8 +41,11 @@ public class FrontEnd extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         user_name = new javax.swing.JLabel();
+        view_policy = new javax.swing.JButton();
+        history = new javax.swing.JButton();
+        bar_chart = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Logged In:");
 
@@ -66,30 +70,62 @@ public class FrontEnd extends javax.swing.JFrame {
 
         user_name.setText("jLabel3");
 
+        view_policy.setText("View Policy");
+        view_policy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_policyActionPerformed(evt);
+            }
+        });
+
+        history.setText("History");
+        history.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historyActionPerformed(evt);
+            }
+        });
+
+        bar_chart.setText("Bar Chart");
+        bar_chart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bar_chartActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(84, 84, 84)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(upload)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(download)
-                .addGap(129, 129, 129))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(126, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(84, 84, 84)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(upload)
+                                .addGap(49, 49, 49)
+                                .addComponent(download)
+                                .addGap(66, 66, 66)
+                                .addComponent(view_policy)
+                                .addGap(54, 54, 54)
+                                .addComponent(history))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(228, 228, 228)
+                                .addComponent(bar_chart)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,13 +142,21 @@ public class FrontEnd extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(upload)
-                    .addComponent(download))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(upload)
+                            .addComponent(download)
+                            .addComponent(view_policy)
+                            .addComponent(history))
+                        .addGap(39, 39, 39)))
+                .addComponent(bar_chart)
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -131,6 +175,27 @@ public class FrontEnd extends javax.swing.JFrame {
         download.setVisible(true);
         
     }//GEN-LAST:event_downloadActionPerformed
+
+    private void historyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyActionPerformed
+        // TODO add your handling code here:
+        History history=new History(user_email);
+        history.setVisible(true);
+    }//GEN-LAST:event_historyActionPerformed
+
+    private void view_policyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_policyActionPerformed
+        // TODO add your handling code here:
+        ViewPolicy policy=new ViewPolicy(user_login_ret);
+        policy.setVisible(true);
+        
+    }//GEN-LAST:event_view_policyActionPerformed
+
+    private void bar_chartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bar_chartActionPerformed
+        // TODO add your handling code here:
+        BarChart demo = new BarChart("3D Bar Chart",user_email);
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
+    }//GEN-LAST:event_bar_chartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,14 +225,16 @@ public class FrontEnd extends javax.swing.JFrame {
         //</editor-fold>
 
          /*Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrontEnd("","").setVisible(true);
             }
-        });
+        });*/
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bar_chart;
     private javax.swing.JButton download;
+    private javax.swing.JButton history;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
@@ -175,5 +242,6 @@ public class FrontEnd extends javax.swing.JFrame {
     private javax.swing.JButton upload;
     private javax.swing.JLabel user;
     private javax.swing.JLabel user_name;
+    private javax.swing.JButton view_policy;
     // End of variables declaration//GEN-END:variables
 }

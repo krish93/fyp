@@ -50,12 +50,12 @@ public class db {
     //String insertRow1 = "INSERT INTO Beanstalk1 (Resource) VALUES ('EC2 Instance');";
     //String insertRow2 = "INSERT INTO Beanstalk1 (Resource) VALUES ('RDS Instance');";
     //String drop="drop table users;";
-    String table="insert into sample(name) values('hari')";
-    setupStatement.addBatch(table);
+    ///String table="insert into sample(name) values('hari')";
+    //setupStatement.addBatch(table);
     //setupStatement.addBatch(insertRow1);
     //setupStatement.addBatch(insertRow2);
     //setupStatement.addBatch(drop);
-    setupStatement.executeBatch();
+    //setupStatement.executeBatch();
   ///  setupStatement.close();
     conn.close();
   } catch (SQLException ex) {
@@ -72,17 +72,19 @@ public class db {
     conn = DriverManager.getConnection(jdbcUrl);
       System.out.println("in");
     readStatement = conn.createStatement();
-    resultSet = readStatement.executeQuery("SELECT * FROM user");
+    resultSet = readStatement.executeQuery("SELECT * FROM access_policy");
+    //resultSet = readStatement.executeQuery("SELECT * FROM user_file_history");
     while(resultSet.next())
     {
-        results = resultSet.getString("password");
+        results = resultSet.getString("id")+" " +resultSet.getString("email")+" "+resultSet.getString("filename")+" " +resultSet.getString("type")+" "+resultSet.getString("status")+" "+resultSet.getString("start_time")+" "+resultSet.getString("end_time");
+        //results=resultSet.getString("id")+" "+resultSet.getString("email")+" "+resultSet.getString("filename")+" "+resultSet.getString("policy")+" "+resultSet.getString("success")+" "+resultSet.getString("failure");
         System.out.println("results = " + results);
     }
     //resultSet.first();
     //results = resultSet.getString("id");
     //resultSet.next();
     //results += ", " + resultSet.getString("Resource");
-      System.out.println("results = " + results);
+      //System.out.println("results = " + results);
     resultSet.close();
     readStatement.close();
     conn.close();
