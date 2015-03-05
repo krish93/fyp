@@ -70,7 +70,7 @@
                                       <Component id="male" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="female" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
@@ -83,8 +83,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="college" alignment="0" max="32767" attributes="0"/>
-                              <Component id="branch" alignment="0" pref="199" max="32767" attributes="0"/>
-                              <Component id="department" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="branch" alignment="0" max="32767" attributes="0"/>
+                              <Component id="department" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="date" min="-2" pref="44" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -574,12 +574,16 @@
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="typeItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="typeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="student_check">
       <Properties>
         <Property name="text" type="java.lang.String" value="Student  Year"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="student_checkItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="staff_year">
       <Events>
@@ -590,6 +594,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Experience"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="experience_checkItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="student_year">
       <Properties>
@@ -605,6 +612,10 @@
         </Property>
         <Property name="selectedIndex" type="int" value="-1"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="student_yearItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="student_yearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -620,7 +631,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Policy"/>
+        <Property name="text" type="java.lang.String" value="Generate Policy"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="policyActionPerformed"/>

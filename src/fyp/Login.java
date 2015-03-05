@@ -43,9 +43,11 @@ public class Login extends javax.swing.JFrame {
         register = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         invalid_email = new javax.swing.JLabel();
+        logging = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(105, 105, 105));
+        setBackground(new java.awt.Color(51, 51, 255));
+        setForeground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setText("Email Id:");
 
@@ -96,9 +98,6 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(login))
-                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -107,7 +106,13 @@ public class Login extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(invalid_email, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                                     .addComponent(email_id, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                    .addComponent(password))))
+                                    .addComponent(password)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addComponent(login))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(logging, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(50, 50, 50)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,22 +149,26 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(92, 92, 92)
                         .addComponent(register)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(logging)
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void validateEmail(String email)
+    private int validateEmail(String email)
     {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
         if(!matcher.find())
         {
             invalid_email.setText("Invalid Email");
+            return 0;
         }
         else
         {
             invalid_email.setText("");
         }
+        return 1;
     }
     private void validatePassword(String pass)
     {
@@ -168,17 +177,26 @@ public class Login extends javax.swing.JFrame {
             System.out.println("Enter password");
         }
     }
+    public void setText()
+    {
+        logging.setText("Hi");
+    }
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
         String email=email_id.getText();
         String pass=new String(password.getPassword());
-        validateEmail(email);
+        int i=validateEmail(email);
         validatePassword(pass);
+        if(i==1)
+        {
+        setText();
         DBConfig db=new DBConfig();
         String login_ret=db.login_user(email, pass);
         db=null;
-        if(login_ret=="failed")
+            System.out.println("login_ret = " + login_ret);
+        if(login_ret=="failed" || login_ret==null)
         {
+            logging.setText("");
             JOptionPane.showMessageDialog(this, "Authentication Failed!!!");
         }
         else
@@ -196,6 +214,7 @@ public class Login extends javax.swing.JFrame {
             
             System.out.println("login_ret = " + login_ret);
             }
+        }
         }
     }//GEN-LAST:event_loginActionPerformed
 
@@ -267,6 +286,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logging;
     private javax.swing.JButton login;
     private javax.swing.JPasswordField password;
     private javax.swing.JButton register;

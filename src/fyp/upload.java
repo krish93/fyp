@@ -141,12 +141,15 @@ public class upload {
                 System.out.println("Transfer: " + myUpload.getDescription());
                 System.out.println("  - State: " + myUpload.getState());
                 int status=0;
+                
                 while (myUpload.isDone() == false) {
                     double value=myUpload.getProgress().getPercentTransferred();
                     status = (int)value;
                     //System.out.println(myUpload.getProgress().getPercentTransferred());
+                
                 }
                 double value=myUpload.getProgress().getPercentTransferred();
+                
                 status = (int)value;
                 System.out.println("  - State: " + myUpload.getState());
                 myUpload.waitForCompletion();

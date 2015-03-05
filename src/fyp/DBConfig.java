@@ -92,7 +92,7 @@ public class DBConfig {
                 {
                     count=res.getString("failure");
                     count=(Integer.parseInt(count)+1)+"";
-                    String modify_data="update table user_file _history set success='"+count+"' where email='"+email+"' and filename='"+filename+"'";
+                    String modify_data="update user_file _history set success='"+count+"' where email='"+email+"' and filename='"+filename+"'";
                     Boolean mod=modify.execute(modify_data);
                     modify.close();
                     System.out.println("mod = " + mod);
@@ -404,6 +404,38 @@ public class DBConfig {
                 user[i][15]=res.getString(18);
                 i++;
                 }
+            }
+            return user;
+        }
+        catch(Exception e)
+        {
+            System.out.println("Complete Details Error = " + e);
+        }
+        return null;
+    }
+    public Object[][] getCompelteLogDetails()
+    {
+        Connection conn=null;
+        Statement details=null;
+        Object user[][]=new Object[5000][5000];
+        int i=0;
+        try
+        {
+            conn=DriverManager.getConnection(jdbcUrl);
+            details=conn.createStatement();
+            String user_details="select * from access_policy";
+            ResultSet res=details.executeQuery(user_details);
+            while(res.next())
+            {
+                user[i][0]=(i+1);
+                user[i][1]=res.getString(2);
+                user[i][2]=res.getString(3);
+                user[i][3]=res.getString(4);
+                user[i][4]=res.getString(5);
+                user[i][5]=res.getString(6);
+                user[i][6]=res.getString(7);
+                i++;
+                
             }
             return user;
         }

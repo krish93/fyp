@@ -21,6 +21,7 @@ public class History extends javax.swing.JFrame {
         user_email=email;
         uploadTable();
         downloadTable();
+        
     }
     public void uploadTable()
     {

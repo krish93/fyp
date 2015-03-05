@@ -52,7 +52,7 @@ public class UserTable extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Roll No", "First Name", "Last Name", "Password", "Email Id", "Phone No", "Sex", "Date Of Birth", "Country", "City", "College", "Branch", "Department", "Type", "Experience"
+                "ID", "Roll No", "First Name", "Last Name", "Password", "Email Id", "Phone No", "Sex", "Country", "City", "Date Of Birth", "College", "Branch", "Department", "Type", "Experience"
             }
         ));
         jScrollPane1.setViewportView(user_table);

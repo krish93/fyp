@@ -251,8 +251,18 @@ public class AccessPolicy extends javax.swing.JFrame {
                 typeItemStateChanged(evt);
             }
         });
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
 
         student_check.setText("Student  Year");
+        student_check.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                student_checkItemStateChanged(evt);
+            }
+        });
 
         staff_year.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,15 +271,30 @@ public class AccessPolicy extends javax.swing.JFrame {
         });
 
         experience_check.setText("Experience");
+        experience_check.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                experience_checkItemStateChanged(evt);
+            }
+        });
 
         student_year.setMaximumRowCount(10);
         student_year.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
         student_year.setSelectedIndex(-1);
+        student_year.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                student_yearItemStateChanged(evt);
+            }
+        });
+        student_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                student_yearActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("of");
 
         policy.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        policy.setText("Policy");
+        policy.setText("Generate Policy");
         policy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 policyActionPerformed(evt);
@@ -320,7 +345,7 @@ public class AccessPolicy extends javax.swing.JFrame {
                                         .addComponent(male)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(female)
-                                        .addGap(0, 2, Short.MAX_VALUE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(171, 171, 171))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(dob_check)
@@ -328,8 +353,8 @@ public class AccessPolicy extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(college, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(branch, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE)
-                                .addComponent(department, javax.swing.GroupLayout.Alignment.LEADING, 0, 1, Short.MAX_VALUE)
+                                .addComponent(branch, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(department, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -688,8 +713,8 @@ public class AccessPolicy extends javax.swing.JFrame {
             student_year.setEnabled(true);
             experience_check.setEnabled(false);
             staff_year.setEnabled(false);
-            count++;
-            count_text.setText(count+"");
+            
+            
         }
         else if(name=="staff")
         {
@@ -697,8 +722,6 @@ public class AccessPolicy extends javax.swing.JFrame {
             student_year.setEnabled(false);
             experience_check.setEnabled(true);
             staff_year.setEnabled(true);
-            count++;
-            count_text.setText(count+"");
         }
             
     }//GEN-LAST:event_typeItemStateChanged
@@ -706,7 +729,8 @@ public class AccessPolicy extends javax.swing.JFrame {
     private void policyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_policyActionPerformed
         // TODO add your handling code here:
         result="";
-        if(Integer.parseInt(user_count.getText()) > 0)
+        
+        if(((Integer.parseInt(user_count.getText()) > 1 && Integer.parseInt(count_text.getText())>1))|| user_count.getText()=="")
         {
         if(roll.getText() !="" && roll_check.isSelected())
         {
@@ -782,14 +806,63 @@ public class AccessPolicy extends javax.swing.JFrame {
         }
             
         result+=user_count.getText()+"of"+count_text.getText();
-        }
         DBConfig db=new DBConfig();
         db.insertPolicy(user_email, filename, result);
         db=null;
         System.out.println("result = " + result);
         res.setText(result);
         this.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Policy set must be grater than 1");
+        }
+        
     }//GEN-LAST:event_policyActionPerformed
+
+    private void student_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_yearActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_student_yearActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void student_yearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_student_yearItemStateChanged
+        
+
+    }//GEN-LAST:event_student_yearItemStateChanged
+
+    private void student_checkItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_student_checkItemStateChanged
+        // TODO add your handling code here:
+         if(student_check.isSelected())
+        {            
+        count++;
+        count_text.setText(count+"");
+        }
+        else
+        {
+            count--;
+            count_text.setText(count+"");
+        }
+
+    }//GEN-LAST:event_student_checkItemStateChanged
+
+    private void experience_checkItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_experience_checkItemStateChanged
+        // TODO add your handling code here:
+         if(experience_check.isSelected())
+        {            
+        count++;
+        count_text.setText(count+"");
+        }
+        else
+        {
+            count--;
+            count_text.setText(count+"");
+        }
+
+    }//GEN-LAST:event_experience_checkItemStateChanged
     public String getPolicy()
     {
         return result;

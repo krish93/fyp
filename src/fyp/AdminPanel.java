@@ -30,7 +30,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         user_table = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        log_table = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,10 +47,10 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setText("View Log Table");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        log_table.setText("View Log Table");
+        log_table.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                log_tableActionPerformed(evt);
             }
         });
 
@@ -65,7 +65,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(user_table)
                 .addGap(49, 49, 49)
-                .addComponent(jToggleButton2)
+                .addComponent(log_table)
                 .addGap(63, 63, 63)
                 .addComponent(jToggleButton3)
                 .addContainerGap(174, Short.MAX_VALUE))
@@ -84,7 +84,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(user_table)
-                    .addComponent(jToggleButton2)
+                    .addComponent(log_table)
                     .addComponent(jToggleButton3))
                 .addContainerGap(175, Short.MAX_VALUE))
         );
@@ -94,11 +94,15 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void user_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_tableActionPerformed
         // TODO add your handling code here:
+        UserTable user=new UserTable();
+        user.setVisible(true);
     }//GEN-LAST:event_user_tableActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void log_tableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_log_tableActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        LogTable log=new LogTable();
+        log.setVisible(true);
+    }//GEN-LAST:event_log_tableActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,8 +141,8 @@ public class AdminPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton log_table;
     private javax.swing.JToggleButton user_table;
     // End of variables declaration//GEN-END:variables
 }
