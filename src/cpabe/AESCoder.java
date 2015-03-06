@@ -42,7 +42,6 @@ public class AESCoder {
 		SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 		Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 		cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-                //byte cp[]=cipher.update(ciphertext);
 		byte[] decrypted = cipher.doFinal(ciphertext);
 		          System.out.println("decrypted = " + new String(decrypted));
 		return decrypted;

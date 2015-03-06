@@ -77,25 +77,25 @@ public class Common {
         {
             InputStream is = new FileInputStream(encrypt_file);
             byte[][] res = new byte[2][];
-            byte[] aesBuf, cphBuf;
+            byte[] aes_buffer, cipher_buffer;
 
             len = 0;
             for (i = 3; i >= 0; i--)
             {
                 len |= is.read() << (i * 8);
             }
-            aesBuf = new byte[len];
-            is.read(aesBuf);
+            aes_buffer = new byte[len];
+            is.read(aes_buffer);
             len = 0;
             for (i = 3; i >= 0; i--)
             {
                 len |= is.read() << (i * 8);
             }
-            cphBuf = new byte[len];
-            is.read(cphBuf);
+            cipher_buffer = new byte[len];
+            is.read(cipher_buffer);
             is.close();
-            res[0] = aesBuf;
-            res[1] = cphBuf;
+            res[0] = aes_buffer;
+            res[1] = cipher_buffer;
             return res;
 	}
         catch(Exception e)

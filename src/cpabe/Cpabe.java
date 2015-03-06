@@ -5,7 +5,7 @@
 package cpabe;
 
 import bswabe.*;
-import cpabe.policy.LangPolicy;
+import cpabe.policy.AttributePolicy;
 import it.unisa.dia.gas.jpbc.Element;
 
 /**
@@ -22,10 +22,10 @@ public class Cpabe {
         byte[] public_byte,msk_byte;
         Public pub = new Public();
         Mask msk = new Mask();
-        bswabe.setup(pub,msk);
-        public_byte=SerializeUtils.serializeBswabePub(pub);
+        AttributeBasedEncryption.setup(pub,msk);
+        public_byte=SerializeFile.serializePublicKey(pub);
         Common.spitFile(public_file, public_byte);
-	msk_byte = SerializeUtils.serializeBswabeMsk(msk);
+	msk_byte = SerializeFile.serializeMasterKey(msk);
 	Common.spitFile(msk_file, msk_byte);
     }
     public void keyGeneration(String public_file,String private_file,String msk_file,String attribute)
@@ -37,13 +37,13 @@ public class Cpabe {
             byte[] public_byte,msk_byte,private_byte;
             
             public_byte=Common.suckFile(public_file);
-            pub=SerializeUtils.unserializeBswabePub(public_byte);
+            pub=SerializeFile.unserializePublicKey(public_byte);
             
             msk_byte=Common.suckFile(msk_file);
-            msk=SerializeUtils.unserializeBswabeMsk(pub, msk_byte);
-            String[] attr_arr = LangPolicy.parseAttribute(attribute);
-            Private prv = bswabe.keyGeneration(pub, msk, attr_arr);
-            private_byte = SerializeUtils.serializeBswabePrv(prv);
+            msk=SerializeFile.unserializeMasterKey(pub, msk_byte);
+            String[] attr_arr = AttributePolicy.parseAttribute(attribute);
+            Private prv = AttributeBasedEncryption.keyGeneration(pub, msk, attr_arr);
+            private_byte = SerializeFile.serializePrivateKey(prv);
             Common.spitFile(private_file, private_byte);
         }
         catch(Exception e)
@@ -65,9 +65,9 @@ public class Cpabe {
             Element m;
             
             public_byte=Common.suckFile(public_file);
-            pub=SerializeUtils.unserializeBswabePub(public_byte);
+            pub=SerializeFile.unserializePublicKey(public_byte);
             
-            cipher_key=bswabe.encryption(pub,policy);
+            cipher_key=AttributeBasedEncryption.encryption(pub,policy);
             cipher=cipher_key.cph;
             m=cipher_key.key;
             if (cipher == null) 
@@ -75,7 +75,7 @@ public class Cpabe {
                 System.out.println("Error happed in enc");
                 System.exit(0);
             }
-            cipher_buffer = SerializeUtils.bswabeCphSerialize(cipher);
+            cipher_buffer = SerializeFile.serializeCipherKey(cipher);
             plt = Common.suckFile(input_file);
             aes_buffer = AESCoder.encrypt(m.toBytes(), plt);
             Common.writeCpabeFile(encrypt_file, cipher_buffer, aes_buffer);
@@ -99,14 +99,14 @@ public class Cpabe {
             Private prv;
             Public pub;
             public_byte = Common.suckFile(public_file);
-            pub = SerializeUtils.unserializeBswabePub(public_byte);
+            pub = SerializeFile.unserializePublicKey(public_byte);
             temp = Common.readCpabeFile(encrypt_file);
             aes_buffer = temp[0];
             cipher_buffer = temp[1];
-            cipher = SerializeUtils.bswabeCphUnserialize(pub, cipher_buffer);
+            cipher = SerializeFile.unserializeCipherKey(pub, cipher_buffer);
             private_byte = Common.suckFile(private_file);
-            prv = SerializeUtils.unserializeBswabePrv(pub, private_byte);
-            ElementBoolean beb = bswabe.decryption(pub, prv, cipher);
+            prv = SerializeFile.unserializePrivateKey(pub, private_byte);
+            ElementBoolean beb = AttributeBasedEncryption.decryption(pub, prv, cipher);
             if (beb.b) 
             {
                 plt = AESCoder.decrypt(beb.e.toBytes(), aes_buffer);

@@ -7,8 +7,8 @@ package fyp;
 import bswabe.Cipher;
 import bswabe.Private;
 import bswabe.Public;
-import bswabe.SerializeUtils;
-import bswabe.bswabe;
+import bswabe.SerializeFile;
+import bswabe.AttributeBasedEncryption;
 import cpabe.Common;
 import cpabe.Cpabe;
 import java.text.SimpleDateFormat;
@@ -136,14 +136,14 @@ public class FrontEndDownload extends javax.swing.JFrame {
             dec.keyGeneration(pub, prv, msk, user_login_ret);
             dec=null;
             public_byte = Common.suckFile(pub);
-            pub1 = SerializeUtils.unserializeBswabePub(public_byte);
+            pub1 = SerializeFile.unserializePublicKey(public_byte);
             temp = Common.readCpabeFile(file_path_enc);
             aes_buffer = temp[0];
             cipher_buffer = temp[1];
-            cipher = SerializeUtils.bswabeCphUnserialize(pub1, cipher_buffer);
+            cipher = SerializeFile.unserializeCipherKey(pub1, cipher_buffer);
             private_byte = Common.suckFile(prv);
-            prv1 = SerializeUtils.unserializeBswabePrv(pub1, private_byte);
-            bswabe check_policy=new bswabe();
+            prv1 = SerializeFile.unserializePrivateKey(pub1, private_byte);
+            AttributeBasedEncryption check_policy=new AttributeBasedEncryption();
             check_policy.checkSatisfy(cipher.p, prv1);
             if (cipher.p.satisfiable)
             {
