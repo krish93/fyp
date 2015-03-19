@@ -234,6 +234,8 @@ public class FrontEndUpload extends javax.swing.JFrame {
         String public_key=public_dir+"\\public-"+filename+".key";
         String master_key=master_dir+"\\master-"+filename+".key";
         String encrypt=encrypt_dir+"\\"+file_name;
+        String modified_user_attribute=policy.replaceAll("[0-9]of[0-9]", "");
+        System.out.println("modified_user_attribute = " + modified_user_attribute);
       /*  System.out.println("private_key = " + private_key);
         //System.out.println("public_key = " + public_key);
         //System.out.println("master_key = " + master_key);
@@ -247,7 +249,7 @@ public class FrontEndUpload extends javax.swing.JFrame {
         file_upload.setup(public_key, master_key);
         System.out.println("Public key and Master key Generated..!!");
         System.out.println("Generating Private Key..!!");
-        file_upload.keyGeneration(public_key, private_key, master_key, user_attribute);
+        file_upload.keyGeneration(public_key, private_key, master_key, modified_user_attribute);
         System.out.println("Private Key Generated..!!");
         System.out.println("Encrypting the file!!");
         file_upload.encryption(public_key, policy, selected_file_path, encrypt);

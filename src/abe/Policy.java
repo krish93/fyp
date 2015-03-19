@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bswabe;
+package abe;
 
 import it.unisa.dia.gas.jpbc.Element;
 import java.util.ArrayList;

@@ -87,7 +87,7 @@ public class main_file{
                     System.out.println("shit");
                 }
 		println("//start to dec");
-		test.decryption(pubfile, prvfile, encfile, decfile);
+		//test.decryption(pubfile, prvfile, encfile, decfile);
                 //test1.dec(pubfile1,prvfile1,encfile,dec_file);
 		println("//end to dec");
 	}

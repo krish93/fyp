@@ -1,9 +1,9 @@
 package fyp;
-import bswabe.Cipher;
-import bswabe.Private;
-import bswabe.Public;
-import bswabe.SerializeFile;
-import bswabe.AttributeBasedEncryption;
+import abe.Cipher;
+import abe.Private;
+import abe.Public;
+import abe.SerializeFile;
+import abe.AttributeBasedEncryption;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -243,7 +243,7 @@ public class upload {
             String decrypt=decrypt_dir+"\\"+name;
             Cpabe dec=new Cpabe();
             dec.setup(pub,msk);
-            int ret=dec.decryption(pub, key_dir, file_dir, decrypt);
+            int ret=dec.decryption(pub, key_dir, file_dir, decrypt,dir+"\\sample3");
             File del_f=new File(file_dir);
             if(del_f.exists())
             {

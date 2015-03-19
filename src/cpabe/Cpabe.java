@@ -4,7 +4,14 @@
  */
 package cpabe;
 
-import bswabe.*;
+import abe.ElementBoolean;
+import abe.Private;
+import abe.Cipher;
+import abe.Public;
+import abe.AttributeBasedEncryption;
+import abe.SerializeFile;
+import abe.CipherKey;
+import abe.Mask;
 import cpabe.policy.AttributePolicy;
 import it.unisa.dia.gas.jpbc.Element;
 
@@ -85,18 +92,18 @@ public class Cpabe {
             System.out.println("Encryption error = " + e);
         }
     }
-    public int decryption(String public_file,String private_file,String encrypt_file,String decrypt_file)
+    public int decryption(String public_file,String private_file,String encrypt_file,String decrypt_file,String prv_file)
     {
         try
         {
             byte[] aes_buffer;
             byte[] cipher_buffer;
             byte[] plt;
-            byte[] private_byte;
+            byte[] private_byte,private_byte_1;
             byte[] public_byte;
             byte[][] temp;
             Cipher cipher;
-            Private prv;
+            Private prv,prv1;
             Public pub;
             public_byte = Common.suckFile(public_file);
             pub = SerializeFile.unserializePublicKey(public_byte);
@@ -106,7 +113,9 @@ public class Cpabe {
             cipher = SerializeFile.unserializeCipherKey(pub, cipher_buffer);
             private_byte = Common.suckFile(private_file);
             prv = SerializeFile.unserializePrivateKey(pub, private_byte);
-            ElementBoolean beb = AttributeBasedEncryption.decryption(pub, prv, cipher);
+            private_byte_1 = Common.suckFile(prv_file);
+            prv1 = SerializeFile.unserializePrivateKey(pub, private_byte_1);
+            ElementBoolean beb = AttributeBasedEncryption.decryption(pub, prv, cipher,prv1);
             if (beb.b) 
             {
                 plt = AESCoder.decrypt(beb.e.toBytes(), aes_buffer);

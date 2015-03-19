@@ -2,17 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bswabe;
+package abe;
 
 import it.unisa.dia.gas.jpbc.Element;
-import java.util.ArrayList;
 
 /**
  *
  * @author Harikrish
  */
-public class Private {
+public class PrivateComponent {
+    String attr;
     Element d;
-    ArrayList<PrivateComponent> comps;
-    
+    Element dp;
+    int used;
+    Element z;
+    Element zp;
 }

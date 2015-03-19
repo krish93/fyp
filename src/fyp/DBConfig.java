@@ -92,7 +92,7 @@ public class DBConfig {
                 {
                     count=res.getString("failure");
                     count=(Integer.parseInt(count)+1)+"";
-                    String modify_data="update user_file _history set success='"+count+"' where email='"+email+"' and filename='"+filename+"'";
+                    String modify_data="update user_file_history set success='"+count+"' where email='"+email+"' and filename='"+filename+"'";
                     Boolean mod=modify.execute(modify_data);
                     modify.close();
                     System.out.println("mod = " + mod);

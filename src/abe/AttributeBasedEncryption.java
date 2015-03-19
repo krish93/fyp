@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package bswabe;
+package abe;
 
 import it.unisa.dia.gas.jpbc.CurveParameters;
 import it.unisa.dia.gas.jpbc.Element;
@@ -147,7 +147,7 @@ public class AttributeBasedEncryption {
         return null;
     }
             
-    public static ElementBoolean decryption(Public pub,Private prv,Cipher cipher)
+    public static ElementBoolean decryption(Public pub,Private prv,Cipher cipher,Private prv1)
     {
         try
         {
@@ -165,6 +165,7 @@ public class AttributeBasedEncryption {
             }
             pickSatisfyMinLeaves(cipher.p, prv);
             decFlatten(t, cipher.p, prv, pub);
+            System.out.println("cipher.p = " + cipher.p);
             m = cipher.cs.duplicate();
             m.mul(t);
             t = pub.p.pairing(cipher.c, prv.d);
