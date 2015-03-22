@@ -47,6 +47,7 @@ public class FrontEnd extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         delete_file = new javax.swing.JButton();
+        changePolicy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,6 +112,13 @@ public class FrontEnd extends javax.swing.JFrame {
             }
         });
 
+        changePolicy.setText("Change Policy");
+        changePolicy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePolicyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,18 +144,27 @@ public class FrontEnd extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(upload)
-                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(download)
-                    .addComponent(bar_chart))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(delete_file, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(view_policy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(76, 76, 76)
-                .addComponent(history)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(upload)
+                        .addGap(61, 61, 61)
+                        .addComponent(download)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(view_policy, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(bar_chart)
+                        .addGap(52, 52, 52)
+                        .addComponent(delete_file)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(history))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(changePolicy)))
                 .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
@@ -181,6 +198,7 @@ public class FrontEnd extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bar_chart)
+                    .addComponent(changePolicy)
                     .addComponent(delete_file))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
@@ -234,6 +252,12 @@ public class FrontEnd extends javax.swing.JFrame {
         //del_file.setVisible(true);
     }//GEN-LAST:event_delete_fileActionPerformed
 
+    private void changePolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePolicyActionPerformed
+        // TODO add your handling code here:
+        ChangePolicy pol=new ChangePolicy(user_email);
+        pol.setVisible(true);
+    }//GEN-LAST:event_changePolicyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +294,7 @@ public class FrontEnd extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bar_chart;
+    private javax.swing.JButton changePolicy;
     private javax.swing.JButton delete_file;
     private javax.swing.JButton download;
     private javax.swing.JButton history;

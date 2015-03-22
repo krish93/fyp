@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.security.PublicKey;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -215,8 +216,97 @@ public class FrontEndUpload extends javax.swing.JFrame {
     	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
     	return  sdf.format(cal.getTime());
     }
+    public void reUpload(String file_name,String policy)
+    {
+        DBConfig db=new DBConfig();
+       Date now=new Date();
+       String dir=System.getProperty("user.dir");
+       public_dir=dir+"\\file_path\\public_key";
+          private_dir=dir+"\\file_path\\private_key";
+          master_dir=dir+"\\file_path\\master_key";
+          encrypt_dir=dir+"\\file_path\\encrypt";
+          File pub=new File(public_dir);
+          if(!pub.exists())
+          {
+              pub.mkdirs();
+          }
+          File prv=new File(private_dir);
+          if(!prv.exists())
+          {
+              prv.mkdirs();
+          }
+          File msk=new File(master_dir);
+          if(!msk.exists())
+          {
+              msk.mkdirs();
+          }
+          File enc=new File(encrypt_dir);
+          if(!enc.exists())
+          {
+              enc.mkdirs();
+          }
+        System.out.println("policy = " + policy);
+        db=null;
+        upload upload_file=new upload();
+        String start_time=getTime();
+        System.out.println("start_time = " + start_time);
+        ObjectInputStream inputStream = null;
+        
+        String workingDir = System.getProperty("user.dir");
+        String path=workingDir+"//download//"+file_name;
+        String new_working_dir=workingDir.replace("\\","//");
+        path=path.replace("\\","//");
+        System.out.println("path = " + path);
+        String time=now.getTime()+"";
+        String filename=time+file_name.split("\\.")[0];
+        String private_key=private_dir+"\\private-"+filename+".key";
+        String public_key=public_dir+"\\public-"+filename+".key";
+        String master_key=master_dir+"\\master-"+filename+".key";
+        String encrypt=encrypt_dir+"\\"+time+file_name;
+        String modified_user_attribute=policy.replaceAll("[0-9]of[0-9]", "");
+        System.out.println("modified_user_attribute = " + modified_user_attribute);
+      /*  System.out.println("private_key = " + private_key);
+        //System.out.println("public_key = " + public_key);
+        //System.out.println("master_key = " + master_key);
+        //System.out.println("encrypt = " + encrypt);
+        //String policy=user_attribute+" 10of16";
+        //String decrypt=workingDir+"\\file_path\\"+file_name;
+        System.out.println("user_attribute = " + user_attribute);
+        System.out.println("selected_file_path = " + selected_file_path);*/
+        Cpabe file_upload=new Cpabe();
+        System.out.println("Generating Public and Master key..!!");
+        file_upload.setup(public_key, master_key);
+        System.out.println("Public key and Master key Generated..!!");
+        System.out.println("Generating Private Key..!!");
+        file_upload.keyGeneration(public_key, private_key, master_key, modified_user_attribute);
+        System.out.println("Private Key Generated..!!");
+        System.out.println("Encrypting the file!!");
+        file_upload.encryption(public_key, policy,path, encrypt);
+        System.out.println("File Encrypted!!!");
+        /*System.out.println("decrypting...!!!");
+        file_upload.decryption(public_key, private_key, encrypt, decrypt);;
+        System.out.println("File Decrypted..!!");*/
+        if((upload_file.uploadFile(time+file_name, encrypt) == 1))
+        {
+            upload_file.uploadKeyFile("private-"+time+file_name+".key", private_key);
+            String end_time=getTime();
+            DBConfig acc=new DBConfig();
+            acc.insertAccessPolicy(user_email, time+file_name, "upload", "success", start_time, end_time);
+            acc=null;
+            JOptionPane.showMessageDialog(this, "Successfully Uploaded");
+        }
+        else
+        {
+            String end_time=getTime();
+            DBConfig acc=new DBConfig();
+            acc.insertAccessPolicy(user_email, filename, "upload", "failure", start_time, end_time);
+            acc=null;
+            JOptionPane.showMessageDialog(this, "Upload Failed");
+        }
+    }
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
        DBConfig db=new DBConfig();
+       Date now=new Date();
        String policy=db.Policy(user_email, file_name);
         System.out.println("policy = " + policy);
         db=null;
@@ -229,11 +319,12 @@ public class FrontEndUpload extends javax.swing.JFrame {
         String new_working_dir=workingDir.replace("\\","//");
         path=path.replace("\\","//");
         System.out.println("path = " + path);
-        String filename=file_name.split("\\.")[0];
+        String time=now.getTime()+"";
+        String filename=time+file_name.split("\\.")[0];
         String private_key=private_dir+"\\private-"+filename+".key";
         String public_key=public_dir+"\\public-"+filename+".key";
         String master_key=master_dir+"\\master-"+filename+".key";
-        String encrypt=encrypt_dir+"\\"+file_name;
+        String encrypt=encrypt_dir+"\\"+time+file_name;
         String modified_user_attribute=policy.replaceAll("[0-9]of[0-9]", "");
         System.out.println("modified_user_attribute = " + modified_user_attribute);
       /*  System.out.println("private_key = " + private_key);
@@ -257,12 +348,12 @@ public class FrontEndUpload extends javax.swing.JFrame {
         /*System.out.println("decrypting...!!!");
         file_upload.decryption(public_key, private_key, encrypt, decrypt);;
         System.out.println("File Decrypted..!!");*/
-        if((upload_file.uploadFile(file_name, encrypt) == 1))
+        if((upload_file.uploadFile(time+file_name, encrypt) == 1))
         {
-            upload_file.uploadKeyFile("private-"+file_name+".key", private_key);
+            upload_file.uploadKeyFile("private-"+time+file_name+".key", private_key);
             String end_time=getTime();
             DBConfig acc=new DBConfig();
-            acc.insertAccessPolicy(user_email, file_name, "upload", "success", start_time, end_time);
+            acc.insertAccessPolicy(user_email, time+file_name, "upload", "success", start_time, end_time);
             acc=null;
             JOptionPane.showMessageDialog(this, "Successfully Uploaded");
         }

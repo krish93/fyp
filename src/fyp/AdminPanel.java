@@ -31,7 +31,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         user_table = new javax.swing.JToggleButton();
         log_table = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        realTime = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +54,12 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton3.setText("View Chart");
+        realTime.setText("View Real Time Chart");
+        realTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                realTimeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,11 +71,11 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addComponent(user_table)
                 .addGap(49, 49, 49)
                 .addComponent(log_table)
-                .addGap(63, 63, 63)
-                .addComponent(jToggleButton3)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(realTime)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(230, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(228, 228, 228))
         );
@@ -85,7 +90,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(user_table)
                     .addComponent(log_table)
-                    .addComponent(jToggleButton3))
+                    .addComponent(realTime))
                 .addContainerGap(175, Short.MAX_VALUE))
         );
 
@@ -103,6 +108,14 @@ public class AdminPanel extends javax.swing.JFrame {
         LogTable log=new LogTable();
         log.setVisible(true);
     }//GEN-LAST:event_log_tableActionPerformed
+
+    private void realTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realTimeActionPerformed
+        // TODO add your handling code here:
+        realtimedemo demo = new realtimedemo();
+        demo.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        demo.setupFrame();
+        demo.setVisible(true);
+    }//GEN-LAST:event_realTimeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,8 +154,8 @@ public class AdminPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton log_table;
+    private javax.swing.JButton realTime;
     private javax.swing.JToggleButton user_table;
     // End of variables declaration//GEN-END:variables
 }

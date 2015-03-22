@@ -131,6 +131,12 @@ public class FrontEndDownload extends javax.swing.JFrame {
             Cipher cipher;
             Private prv1;
             Public pub1;
+            if(db.isOwner(Name, user_email)==1)
+            {
+                user_login_ret=db.Policy(user_email, Name);
+                user_login_ret=user_login_ret.replaceAll("[0-9]+of[0-9]+","");
+                System.out.println("user_login_ret = " + user_login_ret);
+            }
             Cpabe dec=new Cpabe();
             dec.setup(pub,msk);
             dec.keyGeneration(pub, prv, msk, user_login_ret);

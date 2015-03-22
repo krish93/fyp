@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -80,63 +80,37 @@
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="college" alignment="0" max="32767" attributes="0"/>
-                              <Component id="branch" alignment="0" max="32767" attributes="0"/>
-                              <Component id="department" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="date" min="-2" pref="44" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="month" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="year" min="-2" pref="59" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="city" alignment="1" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="college" alignment="0" max="32767" attributes="0"/>
+                          <Component id="branch" alignment="0" max="32767" attributes="0"/>
+                          <Component id="department" alignment="0" pref="221" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="date" pref="60" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="month" min="-2" pref="66" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="year" min="-2" pref="67" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="country" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="city" alignment="1" max="32767" attributes="0"/>
+                          <Component id="country" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Component id="res" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="policy" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="type_check" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="type" min="-2" pref="86" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="student_check" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="student_year" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="experience_check" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="user_count" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="count_text" min="-2" pref="34" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="staff_year" min="-2" pref="83" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="type_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="student_check" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="experience_check" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="staff_year" max="32767" attributes="0"/>
+                  <Component id="student_year" max="32767" attributes="0"/>
+                  <Component id="type" pref="90" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -145,6 +119,25 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="modify" min="-2" pref="117" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
+                      <Component id="policy" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="user_count" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="count_text" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -218,17 +211,28 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="count_text" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="user_count" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="policy" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="res" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="user_count" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="count_text" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="res" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="policy" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="modify" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -437,78 +441,78 @@
         <Property name="maximumRowCount" type="int" value="500"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="74">
-            <StringItem index="0" value="Aeronautical Engineering"/>
-            <StringItem index="1" value="Aerospace Engineering"/>
-            <StringItem index="2" value="Agricultural &amp; Irrigation Engineering"/>
-            <StringItem index="3" value="Aircraft Maintenance Engineering"/>
+            <StringItem index="0" value="AeronauticalEngineering"/>
+            <StringItem index="1" value="AerospaceEngineering"/>
+            <StringItem index="2" value="Agricultural&amp;Irrigation Engineering"/>
+            <StringItem index="3" value="AircraftMaintenanceEngineering"/>
             <StringItem index="4" value="Animation"/>
-            <StringItem index="5" value="Apparel technology"/>
-            <StringItem index="6" value="Applied electronics"/>
-            <StringItem index="7" value="Applied Mathematics"/>
+            <StringItem index="5" value="ApparelTechnology"/>
+            <StringItem index="6" value="AppliedElectronics"/>
+            <StringItem index="7" value="AppliedMathematics"/>
             <StringItem index="8" value="Architecture"/>
-            <StringItem index="9" value="Automobile Engineering"/>
+            <StringItem index="9" value="AutomobileEngineering"/>
             <StringItem index="10" value="Avionics"/>
-            <StringItem index="11" value="Bio Informatics"/>
-            <StringItem index="12" value="Bio Medical Engineering"/>
+            <StringItem index="11" value="BioInformatics"/>
+            <StringItem index="12" value="BioMedicalEngineering"/>
             <StringItem index="13" value="Biotechnology"/>
-            <StringItem index="14" value="Ceramic Technology"/>
-            <StringItem index="15" value="Charted Accountancy"/>
-            <StringItem index="16" value="Chemical Engineering"/>
+            <StringItem index="14" value="CeramicTechnology"/>
+            <StringItem index="15" value="ChartedAccountancy"/>
+            <StringItem index="16" value="ChemicalEngineering"/>
             <StringItem index="17" value="Chemistry"/>
-            <StringItem index="18" value="Civil Engineering"/>
-            <StringItem index="19" value="Communication Systems"/>
-            <StringItem index="20" value="Computer Science &amp; Engineering"/>
-            <StringItem index="21" value="Cryogenic Engineering"/>
-            <StringItem index="22" value="Elecrical Engineering"/>
-            <StringItem index="23" value="Electrical &amp; Electronics Engineering"/>
-            <StringItem index="24" value="Electronic media"/>
-            <StringItem index="25" value="Electronics &amp; Communication Engineering"/>
-            <StringItem index="26" value="Electronics &amp; Instrumentation"/>
-            <StringItem index="27" value="Embedded Systems"/>
-            <StringItem index="28" value="Energy Engineering"/>
-            <StringItem index="29" value="Engineering Design"/>
-            <StringItem index="30" value="Engineering Physics"/>
-            <StringItem index="31" value="English Literature"/>
+            <StringItem index="18" value="CivilEngineering"/>
+            <StringItem index="19" value="CommunicationSystems"/>
+            <StringItem index="20" value="ComputerScience&amp;Engineering"/>
+            <StringItem index="21" value="CryogenicEngineering"/>
+            <StringItem index="22" value="ElecricalEngineering"/>
+            <StringItem index="23" value="Electrical&amp;ElectronicsEngineering"/>
+            <StringItem index="24" value="ElectronicMedia"/>
+            <StringItem index="25" value="Electronics&amp;CommunicationEngineering"/>
+            <StringItem index="26" value="Electronics&amp;Instrumentation"/>
+            <StringItem index="27" value="EmbeddedSystems"/>
+            <StringItem index="28" value="EnergyEngineering"/>
+            <StringItem index="29" value="EngineeringDesign"/>
+            <StringItem index="30" value="EngineeringPhysics"/>
+            <StringItem index="31" value="EnglishLiterature"/>
             <StringItem index="32" value="Finance"/>
-            <StringItem index="33" value="Fluid Mechanics"/>
-            <StringItem index="34" value="Food Technology"/>
-            <StringItem index="35" value="Geo Informatics"/>
-            <StringItem index="36" value="Harbour Engineering"/>
-            <StringItem index="37" value="High Voltage Engineering"/>
-            <StringItem index="38" value="Hospitality Administration"/>
+            <StringItem index="33" value="FluidMechanics"/>
+            <StringItem index="34" value="FoodTechnology"/>
+            <StringItem index="35" value="GeoInformatics"/>
+            <StringItem index="36" value="HarbourEngineering"/>
+            <StringItem index="37" value="HighVoltageEngineering"/>
+            <StringItem index="38" value="HospitalityAdministration"/>
             <StringItem index="39" value="HR"/>
-            <StringItem index="40" value="Humanities &amp; Social Sciences"/>
-            <StringItem index="41" value="Industrial Engineering"/>
-            <StringItem index="42" value="Information &amp; Communications Technology"/>
-            <StringItem index="43" value="Information Technology"/>
-            <StringItem index="44" value="Internal Combustion Engineering"/>
+            <StringItem index="40" value="Humanities&amp;Social Sciences"/>
+            <StringItem index="41" value="IndustrialEngineering"/>
+            <StringItem index="42" value="Information&amp;Communications Technology"/>
+            <StringItem index="43" value="InformationTechnology"/>
+            <StringItem index="44" value="InternalCombustionEngineering"/>
             <StringItem index="45" value="Logistics"/>
-            <StringItem index="46" value="M.Sc. CS-IT"/>
-            <StringItem index="47" value="M.Sc. E-Media"/>
-            <StringItem index="48" value="Manufacturing Engineering"/>
-            <StringItem index="49" value="Marine Engineering"/>
+            <StringItem index="46" value="M.Sc.CS-IT"/>
+            <StringItem index="47" value="M.Sc.E-Media"/>
+            <StringItem index="48" value="ManufacturingEngineering"/>
+            <StringItem index="49" value="MarineEngineering"/>
             <StringItem index="50" value="Marketing"/>
-            <StringItem index="51" value="Material Science"/>
+            <StringItem index="51" value="MaterialScience"/>
             <StringItem index="52" value="Mathematics"/>
-            <StringItem index="53" value="Mechanical Engineering"/>
+            <StringItem index="53" value="MechanicalEngineering"/>
             <StringItem index="54" value="Mechatronics"/>
-            <StringItem index="55" value="Media Sciences"/>
+            <StringItem index="55" value="MediaSciences"/>
             <StringItem index="56" value="Metallurgy"/>
-            <StringItem index="57" value="Mining Engineering"/>
-            <StringItem index="58" value="Nano Science and Technology"/>
+            <StringItem index="57" value="MiningEngineering"/>
+            <StringItem index="58" value="NanoScience&amp;Technology"/>
             <StringItem index="59" value="Photonics"/>
             <StringItem index="60" value="Physics"/>
-            <StringItem index="61" value="Printing Technology"/>
-            <StringItem index="62" value="Production Engineering"/>
-            <StringItem index="63" value="Remote Sensing"/>
-            <StringItem index="64" value="Software Engineering"/>
-            <StringItem index="65" value="Systems Engineering &amp; Operations Research"/>
-            <StringItem index="66" value="Technology Managment"/>
-            <StringItem index="67" value="Telecommunication Engineering"/>
-            <StringItem index="68" value="Textile Technology"/>
-            <StringItem index="69" value="Theoretical Computer Science"/>
+            <StringItem index="61" value="PrintingTechnology"/>
+            <StringItem index="62" value="ProductionEngineering"/>
+            <StringItem index="63" value="RemoteSensing"/>
+            <StringItem index="64" value="SoftwareEngineering"/>
+            <StringItem index="65" value="SystemsEngineering&amp;Operations Research"/>
+            <StringItem index="66" value="TechnologyManagment"/>
+            <StringItem index="67" value="TelecommunicationEngineering"/>
+            <StringItem index="68" value="TextileTechnology"/>
+            <StringItem index="69" value="TheoreticalComputerScience"/>
             <StringItem index="70" value="Thermal"/>
-            <StringItem index="71" value="Transportation Engineering"/>
+            <StringItem index="71" value="TransportationEngineering"/>
             <StringItem index="72" value="VLSI Design"/>
             <StringItem index="73" value="Other"/>
           </StringArray>
@@ -592,7 +596,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="experience_check">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Experience"/>
+        <Property name="text" type="java.lang.String" value="Staff Experience"/>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="experience_checkItemStateChanged"/>
@@ -649,6 +653,17 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="modify">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Modify Policy"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

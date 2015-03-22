@@ -4,6 +4,8 @@ import abe.Private;
 import abe.Public;
 import abe.SerializeFile;
 import abe.AttributeBasedEncryption;
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -11,12 +13,14 @@ import java.util.List;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -300,7 +304,7 @@ public class upload {
             S3Object object = s3client.getObject(request);
             S3ObjectInputStream objectContent = object.getObjectContent();
             
-            System.out.println(IOUtils.copy(objectContent, new FileOutputStream(new_working_dir+"//"+name[1])));   
+            System.out.println("keyj="+IOUtils.copy(objectContent, new FileOutputStream(new_working_dir+"//"+name[1])));   
             
             }
             catch(Exception e)
@@ -348,5 +352,43 @@ public class upload {
                 System.out.println("download error = " + e);
             }
         }
-        
+        public void deleteMainFile(String mainFile)
+        {
+            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            String bucketName = "cp-abe";
+            String keyName="File/"+mainFile;
+            System.out.println("keyName = " + keyName);
+            try {
+            s3Client.deleteObject(new DeleteObjectRequest(bucketName, keyName));
+        } catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException.");
+            System.out.println("Error Message: " + ace.getMessage());
+        }
+        }
+        public void deleteKeyFile(String keyFile)
+        {
+            AmazonS3 s3Client = new AmazonS3Client(credentials);
+            String bucketName = "cp-abe";
+            String keyName="Policy/"+keyFile;
+            try {
+            s3Client.deleteObject(new DeleteObjectRequest(bucketName, keyName));
+        } catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException.");
+            System.out.println("Error Message: " + ace.getMessage());
+        }
+        }
 }

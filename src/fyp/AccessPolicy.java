@@ -4,6 +4,17 @@
  */
 package fyp;
 
+import abe.Cipher;
+import abe.Private;
+import abe.Public;
+import cpabe.Cpabe;
+import java.io.ObjectInputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,6 +63,7 @@ public class AccessPolicy extends javax.swing.JFrame {
         count_text.setEnabled(false);
         student_check.setEnabled(false);
         experience_check.setEnabled(false);
+        modify.setEnabled(false);
         buttonGroup1.add(male);
         buttonGroup1.add(female);
         res.setVisible(false);
@@ -109,8 +121,9 @@ public class AccessPolicy extends javax.swing.JFrame {
         policy = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         res = new javax.swing.JLabel();
+        modify = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Access Policy");
@@ -225,7 +238,7 @@ public class AccessPolicy extends javax.swing.JFrame {
         branch.setSelectedIndex(-1);
 
         department.setMaximumRowCount(500);
-        department.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aeronautical Engineering", "Aerospace Engineering", "Agricultural & Irrigation Engineering", "Aircraft Maintenance Engineering", "Animation", "Apparel technology", "Applied electronics", "Applied Mathematics", "Architecture", "Automobile Engineering", "Avionics", "Bio Informatics", "Bio Medical Engineering", "Biotechnology", "Ceramic Technology", "Charted Accountancy", "Chemical Engineering", "Chemistry", "Civil Engineering", "Communication Systems", "Computer Science & Engineering", "Cryogenic Engineering", "Elecrical Engineering", "Electrical & Electronics Engineering", "Electronic media", "Electronics & Communication Engineering", "Electronics & Instrumentation", "Embedded Systems", "Energy Engineering", "Engineering Design", "Engineering Physics", "English Literature", "Finance", "Fluid Mechanics", "Food Technology", "Geo Informatics", "Harbour Engineering", "High Voltage Engineering", "Hospitality Administration", "HR", "Humanities & Social Sciences", "Industrial Engineering", "Information & Communications Technology", "Information Technology", "Internal Combustion Engineering", "Logistics", "M.Sc. CS-IT", "M.Sc. E-Media", "Manufacturing Engineering", "Marine Engineering", "Marketing", "Material Science", "Mathematics", "Mechanical Engineering", "Mechatronics", "Media Sciences", "Metallurgy", "Mining Engineering", "Nano Science and Technology", "Photonics", "Physics", "Printing Technology", "Production Engineering", "Remote Sensing", "Software Engineering", "Systems Engineering & Operations Research", "Technology Managment", "Telecommunication Engineering", "Textile Technology", "Theoretical Computer Science", "Thermal", "Transportation Engineering", "VLSI Design", "Other" }));
+        department.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AeronauticalEngineering", "AerospaceEngineering", "Agricultural&Irrigation Engineering", "AircraftMaintenanceEngineering", "Animation", "ApparelTechnology", "AppliedElectronics", "AppliedMathematics", "Architecture", "AutomobileEngineering", "Avionics", "BioInformatics", "BioMedicalEngineering", "Biotechnology", "CeramicTechnology", "ChartedAccountancy", "ChemicalEngineering", "Chemistry", "CivilEngineering", "CommunicationSystems", "ComputerScience&Engineering", "CryogenicEngineering", "ElecricalEngineering", "Electrical&ElectronicsEngineering", "ElectronicMedia", "Electronics&CommunicationEngineering", "Electronics&Instrumentation", "EmbeddedSystems", "EnergyEngineering", "EngineeringDesign", "EngineeringPhysics", "EnglishLiterature", "Finance", "FluidMechanics", "FoodTechnology", "GeoInformatics", "HarbourEngineering", "HighVoltageEngineering", "HospitalityAdministration", "HR", "Humanities&Social Sciences", "IndustrialEngineering", "Information&Communications Technology", "InformationTechnology", "InternalCombustionEngineering", "Logistics", "M.Sc.CS-IT", "M.Sc.E-Media", "ManufacturingEngineering", "MarineEngineering", "Marketing", "MaterialScience", "Mathematics", "MechanicalEngineering", "Mechatronics", "MediaSciences", "Metallurgy", "MiningEngineering", "NanoScience&Technology", "Photonics", "Physics", "PrintingTechnology", "ProductionEngineering", "RemoteSensing", "SoftwareEngineering", "SystemsEngineering&Operations Research", "TechnologyManagment", "TelecommunicationEngineering", "TextileTechnology", "TheoreticalComputerScience", "Thermal", "TransportationEngineering", "VLSI Design", "Other" }));
         department.setSelectedIndex(-1);
 
         date.setMaximumRowCount(50);
@@ -270,7 +283,7 @@ public class AccessPolicy extends javax.swing.JFrame {
             }
         });
 
-        experience_check.setText("Experience");
+        experience_check.setText("Staff Experience");
         experience_check.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 experience_checkItemStateChanged(evt);
@@ -302,6 +315,14 @@ public class AccessPolicy extends javax.swing.JFrame {
         });
 
         res.setText("jLabel3");
+
+        modify.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        modify.setText("Modify Policy");
+        modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -350,55 +371,53 @@ public class AccessPolicy extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(dob_check)
                                 .addGap(26, 26, 26)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(college, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(branch, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(department, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(city, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(country, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(college, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(branch, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(department, javax.swing.GroupLayout.Alignment.LEADING, 0, 221, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(date, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(city, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(country, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(res)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(policy)
-                        .addGap(153, 153, 153)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(type_check)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(student_check)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(student_year, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(experience_check)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(user_count, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(count_text, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(staff_year, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(type_check)
+                    .addComponent(student_check)
+                    .addComponent(experience_check))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(staff_year)
+                    .addComponent(student_year, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(type, 0, 90, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(327, 327, 327))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(modify, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(policy)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(user_count, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(count_text, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,16 +478,24 @@ public class AccessPolicy extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(experience_check)
                             .addComponent(staff_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(count_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user_count, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(policy)
-                    .addComponent(res))
-                .addGap(16, 16, 16))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(user_count, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(count_text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(res)
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(policy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(modify)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -725,14 +752,11 @@ public class AccessPolicy extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_typeItemStateChanged
+public void returnCompletePolicy()
+{
+    result="";
 
-    private void policyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_policyActionPerformed
-        // TODO add your handling code here:
-        result="";
-        
-        if(((Integer.parseInt(user_count.getText()) > 1 && Integer.parseInt(count_text.getText())>1))|| user_count.getText()=="")
-        {
-        if(roll.getText() !="" && roll_check.isSelected())
+    if(roll.getText() !="" && roll_check.isSelected())
         {
             result+="roll:"+roll.getText().replaceAll("\\s+","")+" ";
         }
@@ -806,6 +830,13 @@ public class AccessPolicy extends javax.swing.JFrame {
         }
             
         result+=user_count.getText()+"of"+count_text.getText();
+}
+    private void policyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_policyActionPerformed
+        // TODO add your handling code here:
+        
+        if(((Integer.parseInt(user_count.getText()) > 1 && Integer.parseInt(count_text.getText())>1 && Integer.parseInt(user_count.getText())<=Integer.parseInt(count_text.getText())))|| user_count.getText()=="")
+        {
+        returnCompletePolicy();
         DBConfig db=new DBConfig();
         db.insertPolicy(user_email, filename, result);
         db=null;
@@ -813,9 +844,13 @@ public class AccessPolicy extends javax.swing.JFrame {
         res.setText(result);
         this.dispose();
         }
-        else
+        else if(Integer.parseInt(user_count.getText())==1 || user_count.getText()=="")
         {
             JOptionPane.showMessageDialog(this, "Policy set must be grater than 1");
+        }
+        else if(Integer.parseInt(user_count.getText())>Integer.parseInt(count_text.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "value is greater than selected policy");
         }
         
     }//GEN-LAST:event_policyActionPerformed
@@ -863,9 +898,223 @@ public class AccessPolicy extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_experience_checkItemStateChanged
+public void generateBasicKey()
+{
+    String dir=System.getProperty("user.dir");
+            String pub=dir+"\\sample1";
+            String msk=dir+"\\sample2";
+            String prv=dir+"\\sample3";
+            DBConfig db=new DBConfig();
+            String policy=db.Policy(user_email, filename);
+            byte[] private_byte;
+            byte[] public_byte;
+            byte[] aes_buffer;
+            byte[] cipher_buffer;
+            byte[][] temp;
+            String file_path_enc=dir+"\\download-encrypt\\"+filename;
+            System.out.println("file_path_enc = " + file_path_enc);
+            Cipher cipher;
+            Private prv1;
+            Public pub1;
+            if(db.isOwner(filename, user_email)==1)
+            {
+                String userPolicy=db.Policy(user_email, filename);
+                userPolicy=userPolicy.replaceAll("[0-9]+of[0-9]+","");
+                Cpabe dec=new Cpabe();
+                dec.setup(pub,msk);
+                dec.keyGeneration(pub, prv, msk, userPolicy);
+                dec=null;
+            }
+            
+}
+public String getTime()
+    {
+        Calendar cal = Calendar.getInstance();
+    	cal.getTime();
+    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
+    	return  sdf.format(cal.getTime());
+    }
+    private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
+        // TODO add your handling code here:
+        if(((Integer.parseInt(user_count.getText()) > 1 && Integer.parseInt(count_text.getText())>1 && Integer.parseInt(user_count.getText())<=Integer.parseInt(count_text.getText())))|| user_count.getText()=="")
+        {
+        returnCompletePolicy();
+        DBConfig db=new DBConfig();
+        db.updatePolicy(user_email, filename, result);
+        db=null;
+        generateBasicKey();
+        upload download=new upload();
+        download.downloadKeyFile("private-"+filename+".key");
+        String []words={filename};
+        List<String> wordList = Arrays.asList(words); 
+            System.out.println("wordList = " + wordList);
+            download.downloadFile(wordList);
+        int ret=download.decryptFile(wordList,"private-"+filename+".key");
+        download.deleteMainFile(filename);
+        download.deleteKeyFile("private-"+filename+".key");
+        FrontEndUpload upload=new FrontEndUpload(result,user_email);
+        upload.reUpload(filename, result);
+        System.out.println("result = " + result);
+        res.setText(result);
+        this.dispose();
+        }
+        else if(Integer.parseInt(user_count.getText())==1 || user_count.getText()=="")
+        {
+            JOptionPane.showMessageDialog(this, "Policy set must be grater than 1");
+        }
+        else if(Integer.parseInt(user_count.getText())>Integer.parseInt(count_text.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "value is greater than selected policy");
+        }
+    }//GEN-LAST:event_modifyActionPerformed
     public String getPolicy()
     {
         return result;
+    }
+    public void changePolicy(String userPolicy)
+    {
+        String[] splitPolicy=userPolicy.split(" ");
+        policy.setEnabled(false);
+        modify.setEnabled(true);
+        for(int i=0;i<splitPolicy.length;i++)         
+        {
+            System.out.println("splitPolicy[i] = " + splitPolicy[i]);
+            if(splitPolicy[i].contains("roll"))
+            {
+                roll.setEnabled(true);
+                roll_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                roll.setText(name);
+            }
+            else if(splitPolicy[i].contains("firstname"))
+            {
+                firstname.setEnabled(true);
+                firstname_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                firstname.setText(name);
+            }
+            else if(splitPolicy[i].contains("lastname"))
+            {
+                lastname.setEnabled(true);
+                lastname_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                lastname.setText(name);
+            }
+            else if(splitPolicy[i].contains("email"))
+            {
+                email.setEnabled(true);
+                email_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                email.setText(name);
+            }
+            else if(splitPolicy[i].contains("phone"))
+            {
+                phone.setEnabled(true);
+                phone_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                phone.setText(name);
+            }
+            else if(splitPolicy[i].contains("sex"))
+            {
+                male.setEnabled(true);
+                female.setEnabled(true);
+                sex_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                if(name.toLowerCase().equals("male"))
+                {
+                    male.setSelected(true);
+                }
+                else if(name.toLowerCase().equals("female"))
+                {
+                    female.setSelected(true);
+                }
+            }
+            else if(splitPolicy[i].contains("country"))
+            {
+                country.setEnabled(true);
+                country_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                country.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("city"))
+            {
+                city.setEnabled(true);
+                city_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                city.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("college"))
+            {
+                college.setEnabled(true);
+                college_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                college.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("branch"))
+            {
+                branch.setEnabled(true);
+                branch_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                branch.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("department"))
+            {
+                department.setEnabled(true);
+                department_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                department.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("date"))
+            {
+                date.setEnabled(true);
+                dob_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                date.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("month"))
+            {
+                month.setEnabled(true);
+                dob_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                month.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("year"))
+            {
+                year.setEnabled(true);
+                dob_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                year.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("type"))
+            {
+                type.setEnabled(true);
+                type_check.setSelected(true);
+                String name=splitPolicy[i].split(":")[1];
+                type.setSelectedItem(name);
+            }
+            else if(splitPolicy[i].contains("experience"))
+            {
+                String name=splitPolicy[i].split(":")[1];
+                String Type=type.getSelectedItem().toString();
+                if(Type.equals("student"))
+                {
+                    student_year.setEnabled(true);
+                    student_check.setSelected(true);
+                    student_year.setSelectedItem(name);
+                }
+                else if(Type.equals("staff"))
+                {
+                    staff_year.setEnabled(true);
+                    experience_check.setSelected(true);
+                    staff_year.setText(name);
+                }
+            }
+            else if(splitPolicy[i].contains("of"))
+            {
+                String name=splitPolicy[i].split("of")[0];
+                user_count.setText(name);
+            }
+        }
     }
     /**
      * @param args the command line arguments
@@ -930,11 +1179,12 @@ public class AccessPolicy extends javax.swing.JFrame {
     private javax.swing.JTextField lastname;
     private javax.swing.JCheckBox lastname_check;
     private javax.swing.JRadioButton male;
+    private javax.swing.JButton modify;
     private javax.swing.JComboBox month;
     private javax.swing.JTextField phone;
     private javax.swing.JCheckBox phone_check;
     public javax.swing.JButton policy;
-    public javax.swing.JLabel res;
+    private javax.swing.JLabel res;
     public javax.swing.JTextField roll;
     private javax.swing.JCheckBox roll_check;
     private javax.swing.JCheckBox sex_check;

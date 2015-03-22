@@ -74,28 +74,31 @@ public class DBConfig {
             conn=DriverManager.getConnection(jdbcUrl);
             modify=conn.createStatement();
             select=conn.createStatement();
-            String select_data="select * from user_file_history where email='"+email+"' and filename='"+filename+"'";
+            String select_data="select * from user_file_history where filename='"+filename+"'";
             ResultSet res=select.executeQuery(select_data);
             String count;
+            System.out.println("type = " + type=="success");
             while(res.next())
             {
                 if(type=="success")
                 {
                     count=res.getString("success");
                     count=(Integer.parseInt(count)+1)+"";
-                    String modify_data="update user_file_history set success='"+count+"' where email='"+email+"' and filename='"+filename+"'";
+                    String modify_data="update user_file_history set success='"+count+"' where filename='"+filename+"'";
                     Boolean mod=modify.execute(modify_data);
                     System.out.println("mod = " + mod);
                     modify.close();
                 }
                 else if(type=="failure")
                 {
+                    System.out.println("inside failure");
                     count=res.getString("failure");
                     count=(Integer.parseInt(count)+1)+"";
-                    String modify_data="update user_file_history set success='"+count+"' where email='"+email+"' and filename='"+filename+"'";
+                    String modify_data="update user_file_history set failure='"+count+"' where filename='"+filename+"'";
                     Boolean mod=modify.execute(modify_data);
-                    modify.close();
                     System.out.println("mod = " + mod);
+                    modify.close();
+                    
                 }
             }
             select.close();
@@ -117,6 +120,7 @@ public class DBConfig {
             conn=DriverManager.getConnection(jdbcUrl);
             get_policy=conn.createStatement();
             String data="select policy from user_file_history where email='"+email+"' and filename='"+filename+"'";
+            System.out.println("data = " + data);
             ResultSet res=get_policy.executeQuery(data);
             while(res.next())
             {
@@ -148,6 +152,24 @@ public class DBConfig {
         catch(Exception e)
         {
             System.out.println("Policy insert error = " + e);
+        }
+    }
+    public void updatePolicy(String email,String filename,String policy)
+    {
+        Connection conn=null;
+        Statement insert_policy=null;
+        try
+        {
+            conn=DriverManager.getConnection(jdbcUrl);
+            insert_policy=conn.createStatement();
+            String data="update user_file_history set policy='"+policy+"' where email='"+email+"' and filename='"+filename+"'";
+            insert_policy.execute(data);
+            insert_policy.close();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Policy Update error = " + e);
         }
     }
     public int verifyDuplicate(String roll,String email)
@@ -445,8 +467,90 @@ public class DBConfig {
         }
         return null;
     }
+    public Object[] getSuccessFailureCount()
+    {
+        Connection conn=null;
+        Statement details=null;
+        Object user[]=new Object[10];
+        try
+        {
+            conn=DriverManager.getConnection(jdbcUrl);
+            details=conn.createStatement();
+            String user_details="select sum(success),sum(failure) from user_file_history";
+            ResultSet res=details.executeQuery(user_details);
+            while(res.next())
+            {
+                user[0]=res.getString(1);
+                user[1]=res.getString(2);
+                
+            }
+            details.close();
+            conn.close();
+            System.out.println("user[0] = " + user[0]+" "+user[1]);
+            return user;
+        }
+        catch(Exception e)
+        {
+            System.out.println("Count retrieve error = " + e);
+        }
+        return null;
+    }
+    public String[] getUserFiles(String email)
+    {
+        Connection conn=null;
+        Statement details=null;
+        int i=0;
+        String[] listFiles=new String[1000];
+        try
+        {
+            conn=DriverManager.getConnection(jdbcUrl);
+            details=conn.createStatement();
+            String user_details="select filename from user_file_history where email='"+email+"'";
+            ResultSet res=details.executeQuery(user_details);
+            while(res.next())
+            {
+                listFiles[i++]=res.getString("filename");
+            }
+            details.close();
+            conn.close();
+            return listFiles;
+        }
+        catch(Exception e)
+        {
+            System.out.println("Count retrieve error = " + e);
+        }
+        return null;
+    }
+    public int isOwner(String filename,String email)
+    {
+        Connection conn=null;
+        Statement details=null;
+        try
+        {
+            conn=DriverManager.getConnection(jdbcUrl);
+            details=conn.createStatement();
+            String user_details="select email from user_file_history where filename='"+filename+"'";
+            ResultSet res=details.executeQuery(user_details);
+            while(res.next())
+            {
+                String mail=res.getString("email");
+                if(email.equals(mail))
+                {
+                    System.out.println("matched");
+                    return 1;
+                }
+                        
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println("e = " + e);
+        }
+        return 0;
+    }
         public static void main(String[] args) {
             // TODO code application logic here
             new DBConfig();
+            
         }
       }
