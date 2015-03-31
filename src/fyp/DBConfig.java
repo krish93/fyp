@@ -359,8 +359,8 @@ public class DBConfig {
         Connection conn=null;
         Statement filename=null,status=null;
         String[] file_name=new String[1000];
-        Map<String,Integer> mapper=new HashMap<String,Integer>();
-        Map<String,Map> output=new HashMap(mapper);
+        Map<String,String> mapper=new HashMap<String,String>();
+        Map<String,Map<?,?>> output=new HashMap(mapper);
         int i=0;
         try
         {
@@ -378,11 +378,18 @@ public class DBConfig {
                 {
                     String success=res1.getString("success");
                     String failure=res1.getString("failure");
-                    mapper.put("success", Integer.parseInt(success));
-                    mapper.put("failure",Integer.parseInt(failure));
+                    //System.out.println("success = " + success);
+                    mapper.put("success"+file_name[i], success);
+                    mapper.put("failure"+file_name[i],failure);
+                    
+                    System.out.println(i);
+                    //System.out.println(output.get(file_name[i]));
                 }
-                 output.put(file_name[i],mapper);
+                System.out.println("success"+mapper.get("success"+file_name[i]));
+                output.put(file_name[i],mapper);
+                System.out.println("output  = " + output);
                 i++;
+                
             }
             return output;
         }

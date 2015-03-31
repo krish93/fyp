@@ -8,6 +8,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -34,6 +35,7 @@ public class BarChart extends ApplicationFrame {
         super(title);
         user_email=email;
         final CategoryDataset dataset = createDataset();
+       
         final JFreeChart chart = createChart(dataset);
         final ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
@@ -61,21 +63,61 @@ public class BarChart extends ApplicationFrame {
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         DBConfig db=new DBConfig();
-        Map<String,Map> output=db.getBarGraphDetails(user_email);
+        Map<String,Map<?,?>> output=db.getBarGraphDetails(user_email);
         System.out.println("output = " + output);
         Set set = output.entrySet();
         Iterator iterator = set.iterator();
           while(iterator.hasNext()) {
          Map.Entry name = (Map.Entry)iterator.next();
          String file_name=name.getKey().toString();
-         String remove_braces=name.getValue().toString().replaceAll("\\{", "").replaceAll("\\}","").replaceAll("=","");
+              System.out.println("file_name = " + file_name);
+         //String remove_braces=name.getValue().toString().replaceAll("\\{", "").replaceAll("\\}","").replaceAll("=","");
+         String remove_braces[]=name.getValue().toString().replaceAll("\\{", "").replaceAll("\\}","").split(",");
          System.out.println("remove_braces = " + remove_braces);
-         String string_split[]=remove_braces.split(",");
+         String success="0",failure="0";
+         for(int i=0;i<remove_braces.length;i++)
+         {
+             System.out.println("remove_braces = " + remove_braces[i]);
+             if(remove_braces[i].contains("success"+file_name))
+             {
+                 System.out.println("in");
+                 success=remove_braces[i].split("=")[1];
+             }
+             else if(remove_braces[i].contains("failure"+file_name))
+             {
+                 System.out.println("in");
+                 failure=remove_braces[i].split("=")[1];
+             }
+         }
+         /*String string_split[]=remove_braces.split(",");
+              System.out.println("string_split = " + string_split[0]);
+              System.out.println("string_split = " + string_split[1]);
          string_split[0]=string_split[0].replaceAll("[a-z]+", "").replaceAll("\\s+","");
          string_split[1]=string_split[1].replaceAll("[a-z]+", "").replaceAll("\\s+","");
+        // string_split[0]=string_split[0].split("=")[1];
+         //string_split[1]=string_split[1].split("=")[1];
          System.out.println("string_split[0] = " + string_split[0]);
-         dataset.addValue(Integer.parseInt(string_split[0]), "Success", file_name.replaceAll("\\s+",""));
-         dataset.addValue(Integer.parseInt(string_split[1]), "failure", file_name.replaceAll("\\s+",""));
+         System.out.println("string_split[0] = " + string_split[1]);*/
+         //dataset.addValue(Integer.parseInt(string_split[0]), "Success", file_name.replaceAll("\\s+",""));
+         //dataset.addValue(Integer.parseInt(string_split[1]), "failure", file_name.replaceAll("\\s+",""));
+              System.out.println("success = " + success);
+              System.out.println("failure = " + failure);
+              upload up=new upload();
+              long size=up.getFileSize(file_name);
+              String fileSize="";
+              if(size>=1024)
+              {
+                  size=size/1024;
+                  fileSize=size+"(KB)";
+              }   
+              else
+              {
+                  fileSize=size+"(Bytes)";
+              }
+              
+              
+         dataset.addValue(Integer.parseInt(success), "Success", fileSize);
+         dataset.addValue(Integer.parseInt(failure), "failure", fileSize);
       }
         /*dataset.addValue(1.0, "Series 1", "Category 1");   
         dataset.addValue(2.0, "Series 1", "Category 2");   
@@ -97,20 +139,26 @@ public class BarChart extends ApplicationFrame {
     private JFreeChart createChart(final CategoryDataset dataset) {
         
         final JFreeChart chart = ChartFactory.createBarChart3D(
-            "3D Bar Chart Demo",      // chart title
-            "FileName",               // domain axis label
-            "No of Users",                  // range axis label
-            dataset,                  // data
-            PlotOrientation.VERTICAL, // orientation
-            true,                     // include legend
-            true,                     // tooltips
-            false                     // urls
+            "",      
+            "File Size (KB)",              
+            "No of Users",                 
+            dataset,                  
+            PlotOrientation.VERTICAL, 
+            true,                     
+            true,                     
+            false                     
         );
-
+       
         final CategoryPlot plot = chart.getCategoryPlot();
         final CategoryAxis axis = plot.getDomainAxis();
+        plot.setRangeAxis(1, null);
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        System.out.println(rangeAxis.getLowerBound());
+        rangeAxis.setLowerBound(0);
+        rangeAxis.setRange(0, 10);
+        System.out.println("axis"+axis.getAxisLinePaint());
         axis.setCategoryLabelPositions(
-            CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 8.0)
+            CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 16.0)
         );
         
         final CategoryItemRenderer renderer = plot.getRenderer();
@@ -130,7 +178,7 @@ public class BarChart extends ApplicationFrame {
      */
     public static void main(final String[] args) {
 
-        final BarChart demo = new BarChart("3D Bar Chart Demo 3","harik312@gmail.com");
+        final BarChart demo = new BarChart("","harik312@gmail.com");
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);

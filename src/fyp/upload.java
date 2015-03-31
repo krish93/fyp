@@ -22,6 +22,7 @@ import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
+import com.amazonaws.services.s3.model.ListObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -50,7 +51,6 @@ public class upload {
 				"NqvK+7LTVZmQCWs49KeB0urJdoVYH0Jy2GR84Btv");
 	upload(){}
 	public static void main(String[] args) {
-            
 		// credentials object identifying user for authentication
 		// user must have AWSConnector and AmazonS3FullAccess for 
 		// this example to work
@@ -390,5 +390,23 @@ public class upload {
             System.out.println("Caught an AmazonClientException.");
             System.out.println("Error Message: " + ace.getMessage());
         }
+        }
+        public long getFileSize(String fileName)
+        {
+            AmazonS3 s3client = new AmazonS3Client(credentials);
+            String bucketName = "cp-abe";
+            String folderName = "File";
+            long size=0;
+            String file_name = folderName + SUFFIX + fileName;
+            for (Bucket bucket : s3client.listBuckets()) {
+                    System.out.println(" - " + bucket.getName());
+            }
+            ObjectListing objectListing = s3client.listObjects(new ListObjectsRequest().withBucketName(bucketName).withPrefix("File/"+fileName));
+            for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+                    System.out.println(" - " + objectSummary.getKey() + "  "
+                                    + "(size = " + objectSummary.getSize() + ")");
+                    size=objectSummary.getSize();
+            }
+            return size;
         }
 }
